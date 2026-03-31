@@ -1,0 +1,97 @@
+$Id: History,v 1.19.4.1 2009/08/11 14:24:38 gcosmo Exp $
+-------------------------------------------------------------------
+
+     =========================================================
+     Geant4 - an Object-Oriented Toolkit for Simulation in HEP
+     =========================================================
+
+                      Category History file
+                      ---------------------
+This file should be used by G4 developers and category coordinators
+to briefly summarize all major modifications introduced in the code
+and keep track of all category-tags.
+It DOES NOT substitute the  CVS log-message one should put at every
+committal in the CVS repository !
+
+     ----------------------------------------------------------
+     * Reverse chronological order (last date on top), please *
+     ----------------------------------------------------------
+
+06.04.2009   G.A.P.Cirrone, tag medical_linac-V09-01-00
+             Fixed analysis setup.
+
+06.07.2007   Michela Piergentili, tag medical_linac-V08-03-02
+             bug 880 fixed in Detector Construction
+ 
+01.07.2007   Michela Piergentili, tag medical_linac-V08-03-01
+	     macro updated
+
+01.07.2007   Michela Piergentili, tag medical_linac-V08-03-00
+	     removed MedLinacVisManager, set initial seed to 0
+	     The example compiles with CLHEP 2.0.3.1
+	     use of MultipleScattering instead of MultipleScattering52
+
+08.12.2005   Michela Piergentili , tag medical_linac-V07-01-05
+	     updated macro for visualization
+ 
+07.12.2005   Susanna Guatelli, tag medical_linac-V07-01-04
+             The example compiles with CLHEP 2.0.2.2
+
+25.11.2005   Michela Piergentili , tag medical_linac-V07-01-03
+	     update README file, added new methods to messengers
+	     for the selection of the detector features
+
+25.11.2005   Michela Piergentili , tag medical_linac-V07-01-02
+	     code maitenance
+
+24.11.2005   Michela Piergentili , tag medical_linac-V07-01-01
+             code maitenance
+
+24.11.2005   Michela Piergentili , tag medical_linac-V07-01-00
+             code maitenance
+
+13.07.2005   Michela Piergentili, tag medical_linac-V07-00-06
+             macro added
+
+04.07.2005   Michela Piergentili, tag medical_linac-V07-00-05
+             code with DIANE, added histograms
+
+04.07.2005   Michela Piergentili, tag medical_linac-V07-00-04
+             code with DIANE
+
+02.06.2005   Michela Piergentili, tag medical_linac-V07-00-03
+	     code maintenance
+
+02.06.2005   Michela Piergentili, tag medical_linac-V07-00-02
+	     Bug fixed in ROGeometry
+
+3rd May 2005  John Allison  (examples-V07-00-03)
+- Replaced vis manager with G4VisExecutive.
+
+25.11.2004   Michela Piergentili, tag medical_linac-V06-02-00
+	     Maintenance of the code.
+
+24.11.2004   Michela Piergentili, tag medical_linac-V07-00-01
+	     Added MedLinacTrackingAction, MedLinacMLCDecorator 
+	     and MedLinacMLCMessenger.
+
+24.11.2004   Michela Piergentili, tag medical_linac-V07-00-00
+	     Migration to <cmath>
+
+21.05.2004   Michela Piergentili, tag medical_linac-V06-01-03
+	     modified documentation
+
+21.05.2004   Michela Piergentili, tag medical_linac-V06-01-02
+	     added README
+
+14.05.2004   Michela Piergentili, tag medical_linac-V06-01-01
+	     decorator design iteration implemented, bug fixed in 
+	     MedLinacPhantomSD, cut per region introduced for the
+	     first collimator
+
+02.04.2004   Michela Piergentili, tag medical_linac-V06-01-00
+	     geometry completed, bug fixed in DetectorConstruction
+
+18.03.2004   Michela Piergentili, tag medical_linac-V06-00-00
+             First created
+
