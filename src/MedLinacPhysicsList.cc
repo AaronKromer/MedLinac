@@ -109,7 +109,7 @@ void MedLinacPhysicsList::ConstructProcess()
 //#include "G4PenelopeGammaConversion.hh"
 //#include "G4PenelopeRayleigh.hh" 
 
-#include "G4MultipleScattering.hh"
+#include "G4eMultipleScattering.hh"
 
 #include "G4LowEnergyIonisation.hh" 
 #include "G4LowEnergyBremsstrahlung.hh" 
@@ -126,6 +126,7 @@ void MedLinacPhysicsList::ConstructProcess()
 
 void MedLinacPhysicsList::ConstructEM()
 {
+  const auto theParticleIterator = GetParticleIterator();
   theParticleIterator->reset();
   while( (*theParticleIterator)() ){
     G4ParticleDefinition* particle = theParticleIterator->value();
@@ -158,7 +159,7 @@ void MedLinacPhysicsList::ConstructEM()
       loweIon  = new G4LowEnergyIonisation("LowEnergyIoni");
       loweBrem = new G4LowEnergyBremsstrahlung("LowEnBrem");
     
-      pmanager->AddProcess(new G4MultipleScattering, -1, 1,1);
+      pmanager->AddProcess(new G4eMultipleScattering, -1, 1,1);
       pmanager->AddProcess(loweIon,     -1, 2,2);
       pmanager->AddProcess(loweBrem,    -1,-1,3);     
       pmanager -> AddProcess(new G4StepLimiter(), -1, -1, 3);
@@ -171,7 +172,7 @@ void MedLinacPhysicsList::ConstructEM()
   
     } else if (particleName == "e+") {
       //positron
-      pmanager->AddProcess(new G4MultipleScattering,-1, 1,1);
+      pmanager->AddProcess(new G4eMultipleScattering,-1, 1,1);
       pmanager->AddProcess(new G4eIonisation,       -1, 2,2);
       pmanager->AddProcess(new G4eBremsstrahlung,   -1,-1,3);
       pmanager->AddProcess(new G4eplusAnnihilation,  0,-1,4);
