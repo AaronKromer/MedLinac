@@ -28,6 +28,7 @@
 //
 // Code developed by: M. Piergentili
 //
+#include <G4SystemOfUnits.hh>
 #include "MedLinacPrimaryGeneratorAction.hh"
 #include "MedLinacPrimaryGeneratorMessenger.hh"
 
@@ -95,7 +96,7 @@ void MedLinacPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 
   //G4double cosTheta = -0.0001*G4UniformRand()-0.9999;
   G4double cosTheta = CLHEP::RandGauss::shoot(-1.,0.00003);
-  G4double phi = twopi * G4UniformRand();
+  G4double phi = CLHEP::twopi * G4UniformRand();
 
     G4double sinTheta = std::sqrt(1. - cosTheta*cosTheta);
     G4double ux = sinTheta*std::cos(phi);

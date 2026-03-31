@@ -30,6 +30,7 @@
 
 //
 //
+#include <G4SystemOfUnits.hh>
 #include "MedLinacPhantomSD.hh"
 #include "MedLinacPhantomMessenger.hh"
 #include "MedLinacPhantomHit.hh"

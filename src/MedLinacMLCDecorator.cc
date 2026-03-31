@@ -29,6 +29,7 @@
 // Code developed by: M. Piergentili
 //
 //
+#include <G4SystemOfUnits.hh>
 #include "MedLinacVGeometryComponent.hh"
 #include "G4Material.hh"
 #include "MedLinacMLCDecorator.hh"

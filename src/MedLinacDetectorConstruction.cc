@@ -30,7 +30,7 @@
 //
 //
 //------------------------------ beam line along z axis---------------------
-
+#include <G4SystemOfUnits.hh>
 #include "MedLinacDetectorMessenger.hh"
 #include "MedLinacDetectorConstruction.hh"
 #include "MedLinacPhantomROGeometry.hh"

@@ -27,7 +27,7 @@
 // $Id: MedLinacPhysicsListMessenger.cc,v 1.2 2006/06/29 16:04:41 gunter Exp $
 //
 //  Code developed by: M. Piergentili
-
+#include <G4SystemOfUnits.hh>
 #include "MedLinacPhysicsListMessenger.hh"
 
 #include "MedLinacPhysicsList.hh"

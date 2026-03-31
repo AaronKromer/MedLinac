@@ -28,6 +28,7 @@
 //
 // Code developed by: M. Piergentili
 //
+#include <G4SystemOfUnits.hh>
 #include "globals.hh"
 #include "MedLinacPhysicsList.hh"
 #include "MedLinacPhysicsListMessenger.hh"
