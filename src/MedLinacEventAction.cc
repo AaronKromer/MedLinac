@@ -80,7 +80,7 @@ void MedLinacEventAction::EndOfEventAction(const G4Event* evt)
         {
           G4Trajectory* trj = (G4Trajectory*)
                                 ((*(evt->GetTrajectoryContainer()))[i]);
-	  if(drawFlag == "all") trj->DrawTrajectory(50);
+	  if(drawFlag == "all") trj->DrawTrajectory();
 	  else if((drawFlag == "charged")&&(trj->GetCharge() != 0.))
 	    trj->DrawTrajectory();
 	  else if ((drawFlag == "neutral")&&(trj->GetCharge() == 0.))

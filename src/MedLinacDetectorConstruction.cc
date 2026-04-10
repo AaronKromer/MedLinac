@@ -77,6 +77,7 @@
 #include "G4Colour.hh"
 
 #include "G4ios.hh"
+#include "G4NistManager.hh"
 
 MedLinacDetectorConstruction::MedLinacDetectorConstruction(G4String SDName)
   : phantomSD(0),phantomROGeometry(0),
@@ -170,6 +171,7 @@ G4VPhysicalVolume* MedLinacDetectorConstruction::ConstructGeom ()
   G4double pressure; 
   G4double temperature; 
 
+  G4NistManager* nist = G4NistManager::Instance();
   a = 14.00674*g/mole;
   G4Element* elN = new G4Element(name="Nitrogen" ,symbol="N", z=7., a);
 
@@ -193,7 +195,7 @@ G4VPhysicalVolume* MedLinacDetectorConstruction::ConstructGeom ()
   //density = 19.3*g/cm3;
   density = 18.*g/cm3;
   a = 183.85*g/mole;
-  G4Material* W = new G4Material(name="Tungsten"  , z=74., a, density);
+  G4Material* W =  nist -> FindOrBuildMaterial("G4_W");
 
   massOfMole = 1.008*g/mole;
   density = 1.e-25*g/cm3;
@@ -258,12 +260,9 @@ G4VPhysicalVolume* MedLinacDetectorConstruction::ConstructGeom ()
   G4double expHall_x = 3.0*m;
   G4double expHall_y = 3.0*m;
   G4double expHall_z = 3.0*m;
-  G4Box* experimentalHall_box
-    = new G4Box("expHall_box",expHall_x,expHall_y,expHall_z);
-  experimentalHall_log = new G4LogicalVolume(experimentalHall_box,
-                                             Air,"expHall_log",0,0,0);
-  experimentalHall_phys = new G4PVPlacement(0,G4ThreeVector(),
-                                      "expHall",experimentalHall_log,0,false,0);
+  G4Box* experimentalHall_box = new G4Box("expHall_box",expHall_x,expHall_y,expHall_z);
+  experimentalHall_log = new G4LogicalVolume(experimentalHall_box, Air,"expHall_log",0,0,0);
+  experimentalHall_phys = new G4PVPlacement(0,G4ThreeVector(),"expHall",experimentalHall_log,0,false,0);
 
 
  
@@ -272,16 +271,12 @@ G4VPhysicalVolume* MedLinacDetectorConstruction::ConstructGeom ()
   G4double vacudim_x = 9.*cm;
   G4double vacudim_y = 9.*cm;
   G4double vacudim_z = 8.755*cm;
-  G4Box* vacuumBlock_box = new G4Box("vacuumBlock_box",vacudim_x,
-				     vacudim_y,vacudim_z);
-  vacuumBlock_log = new G4LogicalVolume(vacuumBlock_box,
-					Vacuum,"vacuumBlock_log",0,0,0);
+  G4Box* vacuumBlock_box = new G4Box("vacuumBlock_box",vacudim_x, vacudim_y,vacudim_z);
+  vacuumBlock_log = new G4LogicalVolume(vacuumBlock_box,Vacuum,"vacuumBlock_log",0,0,0);
   G4double vacublockPos_x = 0.0*m;
   G4double vacublockPos_y = 0.0*m;
   G4double vacublockPos_z = 114.755*cm;
-  vacuumBlock_phys = new G4PVPlacement(0,
-             G4ThreeVector(vacublockPos_x,vacublockPos_y,vacublockPos_z),
-             "vacuBlock",vacuumBlock_log,experimentalHall_phys,false,0);
+  vacuumBlock_phys = new G4PVPlacement(0,G4ThreeVector(vacublockPos_x,vacublockPos_y,vacublockPos_z),"vacuBlock",vacuumBlock_log,experimentalHall_phys,false,0);
 
 
   //----------------Jaw Y1 collimator---------------
@@ -495,8 +490,8 @@ void MedLinacDetectorConstruction::SetMaxStep (G4double val)
 void MedLinacDetectorConstruction::UpdateGeometry()
 { 
   //G4cout <<"@@@@@@@@@@@@@@@@@@@@@UpdateGeometry "<< G4endl;
-
-  G4RunManager::GetRunManager()->DefineWorldVolume(ConstructGeom());
+  //G4RunManager::GetRunManager()->DefineWorldVolume(ConstructGeom());
+  G4RunManager::GetRunManager()->ReinitializeGeometry(true);
 }
 
 

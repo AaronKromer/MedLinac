@@ -28,6 +28,7 @@
 //
 // Code developed by: M. Piergentili
 //
+#include <G4SystemOfUnits.hh>
 #include "MedLinacPhantomROGeometry.hh"
 #include "MedLinacDummySD.hh"
 

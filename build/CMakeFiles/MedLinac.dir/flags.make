@@ -6,5 +6,5 @@ CXX_DEFINES = -DG4LIB_BUILD_DLL -DPTL_BUILD_DLL
 
 CXX_INCLUDES = -I/home/aaronkromer/Code/MedLinac/include -isystem /usr/local/geant4/geant4.11.4.1-install/include/Geant4
 
-CXX_FLAGS = 
+CXX_FLAGS = -g
 

@@ -91,8 +91,8 @@ MedLinacHead::MedLinacHead()
     reticle_phys(0), aLowerCollRegion(0),aUpperCollRegion(0)
    
 { 
-  aLowerCollRegion = new G4Region("PrimaryCollimatorLow");
-  aUpperCollRegion = new G4Region("PrimaryCollimatorUp");
+  //aLowerCollRegion = new G4Region("PrimaryCollimatorLow");
+  //aUpperCollRegion = new G4Region("PrimaryCollimatorUp");
 }
 
 MedLinacHead::~MedLinacHead()
@@ -283,15 +283,12 @@ void MedLinacHead::ConstructComponent(G4VPhysicalVolume* world,G4VPhysicalVolume
   tracker_log = new G4LogicalVolume(tracker_tube,W,"tracker_log",0,0,0);
 
 
-  G4SubtractionSolid* CylMinusCone = new G4SubtractionSolid("Cyl-Cone",
-  							tracker_tube,collim_cone);
-  CylMinusCone_log = new G4LogicalVolume(CylMinusCone,W,"CylminusCone_log",0,0,0);
+  G4SubtractionSolid* CylMinusCone = new G4SubtractionSolid("Cyl-Cone", tracker_tube,collim_cone);
+  auto CylMinusCone_log = new G4LogicalVolume(CylMinusCone,W,"CylminusCone_log",0,0,0);
   G4double CminusCPos_x = 0.*cm;
   G4double CminusCPos_y = 0.*cm;
   G4double CminusCPos_z = -4.455*cm;
-  CylMinusCone_phys = new G4PVPlacement(rotateMatrix,
-					G4ThreeVector(CminusCPos_x,CminusCPos_y,CminusCPos_z),
-					"CylMinusCone",CylMinusCone_log,vacuumBlock,false,0);
+  auto CylMinusCone_phys = new G4PVPlacement(rotateMatrix, G4ThreeVector(CminusCPos_x,CminusCPos_y,CminusCPos_z), "CylMinusCone",CylMinusCone_log,vacuumBlock,false,0);
   
   
   //delete collim_log;
@@ -439,12 +436,16 @@ void MedLinacHead::ConstructComponent(G4VPhysicalVolume* world,G4VPhysicalVolume
 
   //G4String regName = "PrimaryCollimatorLow";
   //G4Region* aLowerCollRegion = new G4Region(regName);
+  auto regionStore = G4RegionStore::GetInstance();
+  auto aLowerCollRegion = regionStore->FindOrCreateRegion("PrimaryCollimatorLow");
+
+  G4Region* currentRegion = CylMinusCone_log->GetRegion();
   CylMinusCone_log->SetRegion(aLowerCollRegion);
   aLowerCollRegion->AddRootLogicalVolume(CylMinusCone_log);
 
-  //G4String regName1 = "PrimaryCollimatorUp";
-  //G4Region* aUpperCollRegion = new G4Region(regName1);
+  auto aUpperCollRegion = regionStore->FindOrCreateRegion("PrimaryCollimatorUp");
   UpperCollimator_log->SetRegion(aUpperCollRegion);
+  currentRegion = UpperCollimator_log->GetRegion();
   aUpperCollRegion->AddRootLogicalVolume(UpperCollimator_log);
 
 //--------- Visualization attributes -------------------------------

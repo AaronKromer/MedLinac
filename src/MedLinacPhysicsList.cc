@@ -98,22 +98,33 @@ void MedLinacPhysicsList::ConstructProcess()
 //#include "G4ComptonScattering.hh"
 //#include "G4GammaConversion.hh"
 //#include "G4PhotoElectricEffect.hh"
-
+/*
 #include "G4LowEnergyPhotoElectric.hh"
 #include "G4LowEnergyCompton.hh"  
 #include "G4LowEnergyGammaConversion.hh"
 #include "G4LowEnergyRayleigh.hh" 
-
+*/
 //#include "G4PenelopePhotoElectric.hh"
 //#include "G4PenelopeCompton.hh"  
 //#include "G4PenelopeGammaConversion.hh"
 //#include "G4PenelopeRayleigh.hh" 
 
 #include "G4eMultipleScattering.hh"
+#include "G4PhysicsListHelper.hh"
 
+#include "G4PhotoElectricEffect.hh"
+#include "G4ComptonScattering.hh"
+#include "G4GammaConversion.hh"
+
+#include "G4eMultipleScattering.hh"
+#include "G4eIonisation.hh"
+#include "G4eBremsstrahlung.hh"
+#include "G4eplusAnnihilation.hh"
+
+/*
 #include "G4LowEnergyIonisation.hh" 
 #include "G4LowEnergyBremsstrahlung.hh" 
-
+*/
 //#include "G4PenelopeIonisation.hh" 
 //#include "G4PenelopeBremsstrahlung.hh" 
 
@@ -128,11 +139,32 @@ void MedLinacPhysicsList::ConstructEM()
 {
   const auto theParticleIterator = GetParticleIterator();
   theParticleIterator->reset();
+  G4PhysicsListHelper* ph = G4PhysicsListHelper::GetPhysicsListHelper();
   while( (*theParticleIterator)() ){
     G4ParticleDefinition* particle = theParticleIterator->value();
     G4ProcessManager* pmanager = particle->GetProcessManager();
     G4String particleName = particle->GetParticleName();
-     
+
+        if (particleName == "gamma") {
+
+      ph->RegisterProcess(new G4PhotoElectricEffect(), particle);
+      ph->RegisterProcess(new G4ComptonScattering(), particle);
+      ph->RegisterProcess(new G4GammaConversion(), particle);
+
+    } else if (particleName == "e-") {
+
+      ph->RegisterProcess(new G4eMultipleScattering(), particle);
+      ph->RegisterProcess(new G4eIonisation(), particle);
+      ph->RegisterProcess(new G4eBremsstrahlung(), particle);
+
+    } else if (particleName == "e+") {
+
+      ph->RegisterProcess(new G4eMultipleScattering(), particle);
+      ph->RegisterProcess(new G4eIonisation(), particle);
+      ph->RegisterProcess(new G4eBremsstrahlung(), particle);
+      ph->RegisterProcess(new G4eplusAnnihilation(), particle);
+      
+    }/*
     if (particleName == "gamma") {
       // gamma  
  
@@ -177,7 +209,7 @@ void MedLinacPhysicsList::ConstructEM()
       pmanager->AddProcess(new G4eBremsstrahlung,   -1,-1,3);
       pmanager->AddProcess(new G4eplusAnnihilation,  0,-1,4);
       pmanager -> AddProcess(new G4StepLimiter(), -1, -1, 3);
-    }
+    }*/
   }
 }
 
@@ -218,10 +250,10 @@ void MedLinacPhysicsList::SetCuts()
 
   G4String regName = "PrimaryCollimatorLow";
   G4double cutValue = 8.*cm;  
-  G4Region* reg = G4RegionStore::GetInstance()->GetRegion(regName);
+  //G4Region* reg = G4RegionStore::GetInstance()->GetRegion(regName);
   G4ProductionCuts* cuts = new G4ProductionCuts;
   cuts->SetProductionCut(cutValue);
-  reg->SetProductionCuts(cuts);
+  //reg->SetProductionCuts(cuts);
 
   G4String regName1 = "PrimaryCollimatorUp";
   G4double cutValue1 = 8.*cm;  
