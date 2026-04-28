@@ -86,10 +86,24 @@ CMakeFiles/MedLinac.dir/MedLinac.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/MedLinac.dir/MedLinac.cc.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aaronkromer/Code/MedLinac/MedLinac.cc -o CMakeFiles/MedLinac.dir/MedLinac.cc.s
 
+CMakeFiles/MedLinac.dir/src/MedLinacActionInitialization.cc.o: CMakeFiles/MedLinac.dir/flags.make
+CMakeFiles/MedLinac.dir/src/MedLinacActionInitialization.cc.o: /home/aaronkromer/Code/MedLinac/src/MedLinacActionInitialization.cc
+CMakeFiles/MedLinac.dir/src/MedLinacActionInitialization.cc.o: CMakeFiles/MedLinac.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aaronkromer/Code/MedLinac/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/MedLinac.dir/src/MedLinacActionInitialization.cc.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MedLinac.dir/src/MedLinacActionInitialization.cc.o -MF CMakeFiles/MedLinac.dir/src/MedLinacActionInitialization.cc.o.d -o CMakeFiles/MedLinac.dir/src/MedLinacActionInitialization.cc.o -c /home/aaronkromer/Code/MedLinac/src/MedLinacActionInitialization.cc
+
+CMakeFiles/MedLinac.dir/src/MedLinacActionInitialization.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/MedLinac.dir/src/MedLinacActionInitialization.cc.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aaronkromer/Code/MedLinac/src/MedLinacActionInitialization.cc > CMakeFiles/MedLinac.dir/src/MedLinacActionInitialization.cc.i
+
+CMakeFiles/MedLinac.dir/src/MedLinacActionInitialization.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/MedLinac.dir/src/MedLinacActionInitialization.cc.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aaronkromer/Code/MedLinac/src/MedLinacActionInitialization.cc -o CMakeFiles/MedLinac.dir/src/MedLinacActionInitialization.cc.s
+
 CMakeFiles/MedLinac.dir/src/MedLinacAnalysisManager.cc.o: CMakeFiles/MedLinac.dir/flags.make
 CMakeFiles/MedLinac.dir/src/MedLinacAnalysisManager.cc.o: /home/aaronkromer/Code/MedLinac/src/MedLinacAnalysisManager.cc
 CMakeFiles/MedLinac.dir/src/MedLinacAnalysisManager.cc.o: CMakeFiles/MedLinac.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aaronkromer/Code/MedLinac/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/MedLinac.dir/src/MedLinacAnalysisManager.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aaronkromer/Code/MedLinac/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/MedLinac.dir/src/MedLinacAnalysisManager.cc.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MedLinac.dir/src/MedLinacAnalysisManager.cc.o -MF CMakeFiles/MedLinac.dir/src/MedLinacAnalysisManager.cc.o.d -o CMakeFiles/MedLinac.dir/src/MedLinacAnalysisManager.cc.o -c /home/aaronkromer/Code/MedLinac/src/MedLinacAnalysisManager.cc
 
 CMakeFiles/MedLinac.dir/src/MedLinacAnalysisManager.cc.i: cmake_force
@@ -103,7 +117,7 @@ CMakeFiles/MedLinac.dir/src/MedLinacAnalysisManager.cc.s: cmake_force
 CMakeFiles/MedLinac.dir/src/MedLinacDecorator.cc.o: CMakeFiles/MedLinac.dir/flags.make
 CMakeFiles/MedLinac.dir/src/MedLinacDecorator.cc.o: /home/aaronkromer/Code/MedLinac/src/MedLinacDecorator.cc
 CMakeFiles/MedLinac.dir/src/MedLinacDecorator.cc.o: CMakeFiles/MedLinac.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aaronkromer/Code/MedLinac/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/MedLinac.dir/src/MedLinacDecorator.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aaronkromer/Code/MedLinac/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/MedLinac.dir/src/MedLinacDecorator.cc.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MedLinac.dir/src/MedLinacDecorator.cc.o -MF CMakeFiles/MedLinac.dir/src/MedLinacDecorator.cc.o.d -o CMakeFiles/MedLinac.dir/src/MedLinacDecorator.cc.o -c /home/aaronkromer/Code/MedLinac/src/MedLinacDecorator.cc
 
 CMakeFiles/MedLinac.dir/src/MedLinacDecorator.cc.i: cmake_force
@@ -117,7 +131,7 @@ CMakeFiles/MedLinac.dir/src/MedLinacDecorator.cc.s: cmake_force
 CMakeFiles/MedLinac.dir/src/MedLinacDetectorConstruction.cc.o: CMakeFiles/MedLinac.dir/flags.make
 CMakeFiles/MedLinac.dir/src/MedLinacDetectorConstruction.cc.o: /home/aaronkromer/Code/MedLinac/src/MedLinacDetectorConstruction.cc
 CMakeFiles/MedLinac.dir/src/MedLinacDetectorConstruction.cc.o: CMakeFiles/MedLinac.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aaronkromer/Code/MedLinac/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/MedLinac.dir/src/MedLinacDetectorConstruction.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aaronkromer/Code/MedLinac/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/MedLinac.dir/src/MedLinacDetectorConstruction.cc.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MedLinac.dir/src/MedLinacDetectorConstruction.cc.o -MF CMakeFiles/MedLinac.dir/src/MedLinacDetectorConstruction.cc.o.d -o CMakeFiles/MedLinac.dir/src/MedLinacDetectorConstruction.cc.o -c /home/aaronkromer/Code/MedLinac/src/MedLinacDetectorConstruction.cc
 
 CMakeFiles/MedLinac.dir/src/MedLinacDetectorConstruction.cc.i: cmake_force
@@ -131,7 +145,7 @@ CMakeFiles/MedLinac.dir/src/MedLinacDetectorConstruction.cc.s: cmake_force
 CMakeFiles/MedLinac.dir/src/MedLinacDetectorMessenger.cc.o: CMakeFiles/MedLinac.dir/flags.make
 CMakeFiles/MedLinac.dir/src/MedLinacDetectorMessenger.cc.o: /home/aaronkromer/Code/MedLinac/src/MedLinacDetectorMessenger.cc
 CMakeFiles/MedLinac.dir/src/MedLinacDetectorMessenger.cc.o: CMakeFiles/MedLinac.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aaronkromer/Code/MedLinac/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/MedLinac.dir/src/MedLinacDetectorMessenger.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aaronkromer/Code/MedLinac/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/MedLinac.dir/src/MedLinacDetectorMessenger.cc.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MedLinac.dir/src/MedLinacDetectorMessenger.cc.o -MF CMakeFiles/MedLinac.dir/src/MedLinacDetectorMessenger.cc.o.d -o CMakeFiles/MedLinac.dir/src/MedLinacDetectorMessenger.cc.o -c /home/aaronkromer/Code/MedLinac/src/MedLinacDetectorMessenger.cc
 
 CMakeFiles/MedLinac.dir/src/MedLinacDetectorMessenger.cc.i: cmake_force
@@ -145,7 +159,7 @@ CMakeFiles/MedLinac.dir/src/MedLinacDetectorMessenger.cc.s: cmake_force
 CMakeFiles/MedLinac.dir/src/MedLinacEventAction.cc.o: CMakeFiles/MedLinac.dir/flags.make
 CMakeFiles/MedLinac.dir/src/MedLinacEventAction.cc.o: /home/aaronkromer/Code/MedLinac/src/MedLinacEventAction.cc
 CMakeFiles/MedLinac.dir/src/MedLinacEventAction.cc.o: CMakeFiles/MedLinac.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aaronkromer/Code/MedLinac/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/MedLinac.dir/src/MedLinacEventAction.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aaronkromer/Code/MedLinac/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/MedLinac.dir/src/MedLinacEventAction.cc.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MedLinac.dir/src/MedLinacEventAction.cc.o -MF CMakeFiles/MedLinac.dir/src/MedLinacEventAction.cc.o.d -o CMakeFiles/MedLinac.dir/src/MedLinacEventAction.cc.o -c /home/aaronkromer/Code/MedLinac/src/MedLinacEventAction.cc
 
 CMakeFiles/MedLinac.dir/src/MedLinacEventAction.cc.i: cmake_force
@@ -159,7 +173,7 @@ CMakeFiles/MedLinac.dir/src/MedLinacEventAction.cc.s: cmake_force
 CMakeFiles/MedLinac.dir/src/MedLinacHead.cc.o: CMakeFiles/MedLinac.dir/flags.make
 CMakeFiles/MedLinac.dir/src/MedLinacHead.cc.o: /home/aaronkromer/Code/MedLinac/src/MedLinacHead.cc
 CMakeFiles/MedLinac.dir/src/MedLinacHead.cc.o: CMakeFiles/MedLinac.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aaronkromer/Code/MedLinac/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/MedLinac.dir/src/MedLinacHead.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aaronkromer/Code/MedLinac/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/MedLinac.dir/src/MedLinacHead.cc.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MedLinac.dir/src/MedLinacHead.cc.o -MF CMakeFiles/MedLinac.dir/src/MedLinacHead.cc.o.d -o CMakeFiles/MedLinac.dir/src/MedLinacHead.cc.o -c /home/aaronkromer/Code/MedLinac/src/MedLinacHead.cc
 
 CMakeFiles/MedLinac.dir/src/MedLinacHead.cc.i: cmake_force
@@ -173,7 +187,7 @@ CMakeFiles/MedLinac.dir/src/MedLinacHead.cc.s: cmake_force
 CMakeFiles/MedLinac.dir/src/MedLinacMLCDecorator.cc.o: CMakeFiles/MedLinac.dir/flags.make
 CMakeFiles/MedLinac.dir/src/MedLinacMLCDecorator.cc.o: /home/aaronkromer/Code/MedLinac/src/MedLinacMLCDecorator.cc
 CMakeFiles/MedLinac.dir/src/MedLinacMLCDecorator.cc.o: CMakeFiles/MedLinac.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aaronkromer/Code/MedLinac/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/MedLinac.dir/src/MedLinacMLCDecorator.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aaronkromer/Code/MedLinac/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/MedLinac.dir/src/MedLinacMLCDecorator.cc.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MedLinac.dir/src/MedLinacMLCDecorator.cc.o -MF CMakeFiles/MedLinac.dir/src/MedLinacMLCDecorator.cc.o.d -o CMakeFiles/MedLinac.dir/src/MedLinacMLCDecorator.cc.o -c /home/aaronkromer/Code/MedLinac/src/MedLinacMLCDecorator.cc
 
 CMakeFiles/MedLinac.dir/src/MedLinacMLCDecorator.cc.i: cmake_force
@@ -187,7 +201,7 @@ CMakeFiles/MedLinac.dir/src/MedLinacMLCDecorator.cc.s: cmake_force
 CMakeFiles/MedLinac.dir/src/MedLinacMLCMessenger.cc.o: CMakeFiles/MedLinac.dir/flags.make
 CMakeFiles/MedLinac.dir/src/MedLinacMLCMessenger.cc.o: /home/aaronkromer/Code/MedLinac/src/MedLinacMLCMessenger.cc
 CMakeFiles/MedLinac.dir/src/MedLinacMLCMessenger.cc.o: CMakeFiles/MedLinac.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aaronkromer/Code/MedLinac/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/MedLinac.dir/src/MedLinacMLCMessenger.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aaronkromer/Code/MedLinac/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/MedLinac.dir/src/MedLinacMLCMessenger.cc.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MedLinac.dir/src/MedLinacMLCMessenger.cc.o -MF CMakeFiles/MedLinac.dir/src/MedLinacMLCMessenger.cc.o.d -o CMakeFiles/MedLinac.dir/src/MedLinacMLCMessenger.cc.o -c /home/aaronkromer/Code/MedLinac/src/MedLinacMLCMessenger.cc
 
 CMakeFiles/MedLinac.dir/src/MedLinacMLCMessenger.cc.i: cmake_force
@@ -201,7 +215,7 @@ CMakeFiles/MedLinac.dir/src/MedLinacMLCMessenger.cc.s: cmake_force
 CMakeFiles/MedLinac.dir/src/MedLinacPhantomHit.cc.o: CMakeFiles/MedLinac.dir/flags.make
 CMakeFiles/MedLinac.dir/src/MedLinacPhantomHit.cc.o: /home/aaronkromer/Code/MedLinac/src/MedLinacPhantomHit.cc
 CMakeFiles/MedLinac.dir/src/MedLinacPhantomHit.cc.o: CMakeFiles/MedLinac.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aaronkromer/Code/MedLinac/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/MedLinac.dir/src/MedLinacPhantomHit.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aaronkromer/Code/MedLinac/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/MedLinac.dir/src/MedLinacPhantomHit.cc.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MedLinac.dir/src/MedLinacPhantomHit.cc.o -MF CMakeFiles/MedLinac.dir/src/MedLinacPhantomHit.cc.o.d -o CMakeFiles/MedLinac.dir/src/MedLinacPhantomHit.cc.o -c /home/aaronkromer/Code/MedLinac/src/MedLinacPhantomHit.cc
 
 CMakeFiles/MedLinac.dir/src/MedLinacPhantomHit.cc.i: cmake_force
@@ -215,7 +229,7 @@ CMakeFiles/MedLinac.dir/src/MedLinacPhantomHit.cc.s: cmake_force
 CMakeFiles/MedLinac.dir/src/MedLinacPhantomMessenger.cc.o: CMakeFiles/MedLinac.dir/flags.make
 CMakeFiles/MedLinac.dir/src/MedLinacPhantomMessenger.cc.o: /home/aaronkromer/Code/MedLinac/src/MedLinacPhantomMessenger.cc
 CMakeFiles/MedLinac.dir/src/MedLinacPhantomMessenger.cc.o: CMakeFiles/MedLinac.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aaronkromer/Code/MedLinac/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/MedLinac.dir/src/MedLinacPhantomMessenger.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aaronkromer/Code/MedLinac/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/MedLinac.dir/src/MedLinacPhantomMessenger.cc.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MedLinac.dir/src/MedLinacPhantomMessenger.cc.o -MF CMakeFiles/MedLinac.dir/src/MedLinacPhantomMessenger.cc.o.d -o CMakeFiles/MedLinac.dir/src/MedLinacPhantomMessenger.cc.o -c /home/aaronkromer/Code/MedLinac/src/MedLinacPhantomMessenger.cc
 
 CMakeFiles/MedLinac.dir/src/MedLinacPhantomMessenger.cc.i: cmake_force
@@ -229,7 +243,7 @@ CMakeFiles/MedLinac.dir/src/MedLinacPhantomMessenger.cc.s: cmake_force
 CMakeFiles/MedLinac.dir/src/MedLinacPhantomROGeometry.cc.o: CMakeFiles/MedLinac.dir/flags.make
 CMakeFiles/MedLinac.dir/src/MedLinacPhantomROGeometry.cc.o: /home/aaronkromer/Code/MedLinac/src/MedLinacPhantomROGeometry.cc
 CMakeFiles/MedLinac.dir/src/MedLinacPhantomROGeometry.cc.o: CMakeFiles/MedLinac.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aaronkromer/Code/MedLinac/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/MedLinac.dir/src/MedLinacPhantomROGeometry.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aaronkromer/Code/MedLinac/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/MedLinac.dir/src/MedLinacPhantomROGeometry.cc.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MedLinac.dir/src/MedLinacPhantomROGeometry.cc.o -MF CMakeFiles/MedLinac.dir/src/MedLinacPhantomROGeometry.cc.o.d -o CMakeFiles/MedLinac.dir/src/MedLinacPhantomROGeometry.cc.o -c /home/aaronkromer/Code/MedLinac/src/MedLinacPhantomROGeometry.cc
 
 CMakeFiles/MedLinac.dir/src/MedLinacPhantomROGeometry.cc.i: cmake_force
@@ -243,7 +257,7 @@ CMakeFiles/MedLinac.dir/src/MedLinacPhantomROGeometry.cc.s: cmake_force
 CMakeFiles/MedLinac.dir/src/MedLinacPhantomSD.cc.o: CMakeFiles/MedLinac.dir/flags.make
 CMakeFiles/MedLinac.dir/src/MedLinacPhantomSD.cc.o: /home/aaronkromer/Code/MedLinac/src/MedLinacPhantomSD.cc
 CMakeFiles/MedLinac.dir/src/MedLinacPhantomSD.cc.o: CMakeFiles/MedLinac.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aaronkromer/Code/MedLinac/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/MedLinac.dir/src/MedLinacPhantomSD.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aaronkromer/Code/MedLinac/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/MedLinac.dir/src/MedLinacPhantomSD.cc.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MedLinac.dir/src/MedLinacPhantomSD.cc.o -MF CMakeFiles/MedLinac.dir/src/MedLinacPhantomSD.cc.o.d -o CMakeFiles/MedLinac.dir/src/MedLinacPhantomSD.cc.o -c /home/aaronkromer/Code/MedLinac/src/MedLinacPhantomSD.cc
 
 CMakeFiles/MedLinac.dir/src/MedLinacPhantomSD.cc.i: cmake_force
@@ -257,7 +271,7 @@ CMakeFiles/MedLinac.dir/src/MedLinacPhantomSD.cc.s: cmake_force
 CMakeFiles/MedLinac.dir/src/MedLinacPhysicsList.cc.o: CMakeFiles/MedLinac.dir/flags.make
 CMakeFiles/MedLinac.dir/src/MedLinacPhysicsList.cc.o: /home/aaronkromer/Code/MedLinac/src/MedLinacPhysicsList.cc
 CMakeFiles/MedLinac.dir/src/MedLinacPhysicsList.cc.o: CMakeFiles/MedLinac.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aaronkromer/Code/MedLinac/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/MedLinac.dir/src/MedLinacPhysicsList.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aaronkromer/Code/MedLinac/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/MedLinac.dir/src/MedLinacPhysicsList.cc.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MedLinac.dir/src/MedLinacPhysicsList.cc.o -MF CMakeFiles/MedLinac.dir/src/MedLinacPhysicsList.cc.o.d -o CMakeFiles/MedLinac.dir/src/MedLinacPhysicsList.cc.o -c /home/aaronkromer/Code/MedLinac/src/MedLinacPhysicsList.cc
 
 CMakeFiles/MedLinac.dir/src/MedLinacPhysicsList.cc.i: cmake_force
@@ -271,7 +285,7 @@ CMakeFiles/MedLinac.dir/src/MedLinacPhysicsList.cc.s: cmake_force
 CMakeFiles/MedLinac.dir/src/MedLinacPhysicsListMessenger.cc.o: CMakeFiles/MedLinac.dir/flags.make
 CMakeFiles/MedLinac.dir/src/MedLinacPhysicsListMessenger.cc.o: /home/aaronkromer/Code/MedLinac/src/MedLinacPhysicsListMessenger.cc
 CMakeFiles/MedLinac.dir/src/MedLinacPhysicsListMessenger.cc.o: CMakeFiles/MedLinac.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aaronkromer/Code/MedLinac/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/MedLinac.dir/src/MedLinacPhysicsListMessenger.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aaronkromer/Code/MedLinac/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/MedLinac.dir/src/MedLinacPhysicsListMessenger.cc.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MedLinac.dir/src/MedLinacPhysicsListMessenger.cc.o -MF CMakeFiles/MedLinac.dir/src/MedLinacPhysicsListMessenger.cc.o.d -o CMakeFiles/MedLinac.dir/src/MedLinacPhysicsListMessenger.cc.o -c /home/aaronkromer/Code/MedLinac/src/MedLinacPhysicsListMessenger.cc
 
 CMakeFiles/MedLinac.dir/src/MedLinacPhysicsListMessenger.cc.i: cmake_force
@@ -285,7 +299,7 @@ CMakeFiles/MedLinac.dir/src/MedLinacPhysicsListMessenger.cc.s: cmake_force
 CMakeFiles/MedLinac.dir/src/MedLinacPrimaryGeneratorAction.cc.o: CMakeFiles/MedLinac.dir/flags.make
 CMakeFiles/MedLinac.dir/src/MedLinacPrimaryGeneratorAction.cc.o: /home/aaronkromer/Code/MedLinac/src/MedLinacPrimaryGeneratorAction.cc
 CMakeFiles/MedLinac.dir/src/MedLinacPrimaryGeneratorAction.cc.o: CMakeFiles/MedLinac.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aaronkromer/Code/MedLinac/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/MedLinac.dir/src/MedLinacPrimaryGeneratorAction.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aaronkromer/Code/MedLinac/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/MedLinac.dir/src/MedLinacPrimaryGeneratorAction.cc.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MedLinac.dir/src/MedLinacPrimaryGeneratorAction.cc.o -MF CMakeFiles/MedLinac.dir/src/MedLinacPrimaryGeneratorAction.cc.o.d -o CMakeFiles/MedLinac.dir/src/MedLinacPrimaryGeneratorAction.cc.o -c /home/aaronkromer/Code/MedLinac/src/MedLinacPrimaryGeneratorAction.cc
 
 CMakeFiles/MedLinac.dir/src/MedLinacPrimaryGeneratorAction.cc.i: cmake_force
@@ -299,7 +313,7 @@ CMakeFiles/MedLinac.dir/src/MedLinacPrimaryGeneratorAction.cc.s: cmake_force
 CMakeFiles/MedLinac.dir/src/MedLinacPrimaryGeneratorMessenger.cc.o: CMakeFiles/MedLinac.dir/flags.make
 CMakeFiles/MedLinac.dir/src/MedLinacPrimaryGeneratorMessenger.cc.o: /home/aaronkromer/Code/MedLinac/src/MedLinacPrimaryGeneratorMessenger.cc
 CMakeFiles/MedLinac.dir/src/MedLinacPrimaryGeneratorMessenger.cc.o: CMakeFiles/MedLinac.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aaronkromer/Code/MedLinac/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/MedLinac.dir/src/MedLinacPrimaryGeneratorMessenger.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aaronkromer/Code/MedLinac/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/MedLinac.dir/src/MedLinacPrimaryGeneratorMessenger.cc.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MedLinac.dir/src/MedLinacPrimaryGeneratorMessenger.cc.o -MF CMakeFiles/MedLinac.dir/src/MedLinacPrimaryGeneratorMessenger.cc.o.d -o CMakeFiles/MedLinac.dir/src/MedLinacPrimaryGeneratorMessenger.cc.o -c /home/aaronkromer/Code/MedLinac/src/MedLinacPrimaryGeneratorMessenger.cc
 
 CMakeFiles/MedLinac.dir/src/MedLinacPrimaryGeneratorMessenger.cc.i: cmake_force
@@ -313,7 +327,7 @@ CMakeFiles/MedLinac.dir/src/MedLinacPrimaryGeneratorMessenger.cc.s: cmake_force
 CMakeFiles/MedLinac.dir/src/MedLinacRunAction.cc.o: CMakeFiles/MedLinac.dir/flags.make
 CMakeFiles/MedLinac.dir/src/MedLinacRunAction.cc.o: /home/aaronkromer/Code/MedLinac/src/MedLinacRunAction.cc
 CMakeFiles/MedLinac.dir/src/MedLinacRunAction.cc.o: CMakeFiles/MedLinac.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aaronkromer/Code/MedLinac/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/MedLinac.dir/src/MedLinacRunAction.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aaronkromer/Code/MedLinac/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/MedLinac.dir/src/MedLinacRunAction.cc.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MedLinac.dir/src/MedLinacRunAction.cc.o -MF CMakeFiles/MedLinac.dir/src/MedLinacRunAction.cc.o.d -o CMakeFiles/MedLinac.dir/src/MedLinacRunAction.cc.o -c /home/aaronkromer/Code/MedLinac/src/MedLinacRunAction.cc
 
 CMakeFiles/MedLinac.dir/src/MedLinacRunAction.cc.i: cmake_force
@@ -327,7 +341,7 @@ CMakeFiles/MedLinac.dir/src/MedLinacRunAction.cc.s: cmake_force
 CMakeFiles/MedLinac.dir/src/MedLinacTargetAndFilterDecorator.cc.o: CMakeFiles/MedLinac.dir/flags.make
 CMakeFiles/MedLinac.dir/src/MedLinacTargetAndFilterDecorator.cc.o: /home/aaronkromer/Code/MedLinac/src/MedLinacTargetAndFilterDecorator.cc
 CMakeFiles/MedLinac.dir/src/MedLinacTargetAndFilterDecorator.cc.o: CMakeFiles/MedLinac.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aaronkromer/Code/MedLinac/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/MedLinac.dir/src/MedLinacTargetAndFilterDecorator.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aaronkromer/Code/MedLinac/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/MedLinac.dir/src/MedLinacTargetAndFilterDecorator.cc.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MedLinac.dir/src/MedLinacTargetAndFilterDecorator.cc.o -MF CMakeFiles/MedLinac.dir/src/MedLinacTargetAndFilterDecorator.cc.o.d -o CMakeFiles/MedLinac.dir/src/MedLinacTargetAndFilterDecorator.cc.o -c /home/aaronkromer/Code/MedLinac/src/MedLinacTargetAndFilterDecorator.cc
 
 CMakeFiles/MedLinac.dir/src/MedLinacTargetAndFilterDecorator.cc.i: cmake_force
@@ -341,7 +355,7 @@ CMakeFiles/MedLinac.dir/src/MedLinacTargetAndFilterDecorator.cc.s: cmake_force
 CMakeFiles/MedLinac.dir/src/MedLinacTrackingAction.cc.o: CMakeFiles/MedLinac.dir/flags.make
 CMakeFiles/MedLinac.dir/src/MedLinacTrackingAction.cc.o: /home/aaronkromer/Code/MedLinac/src/MedLinacTrackingAction.cc
 CMakeFiles/MedLinac.dir/src/MedLinacTrackingAction.cc.o: CMakeFiles/MedLinac.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aaronkromer/Code/MedLinac/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/MedLinac.dir/src/MedLinacTrackingAction.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aaronkromer/Code/MedLinac/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/MedLinac.dir/src/MedLinacTrackingAction.cc.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MedLinac.dir/src/MedLinacTrackingAction.cc.o -MF CMakeFiles/MedLinac.dir/src/MedLinacTrackingAction.cc.o.d -o CMakeFiles/MedLinac.dir/src/MedLinacTrackingAction.cc.o -c /home/aaronkromer/Code/MedLinac/src/MedLinacTrackingAction.cc
 
 CMakeFiles/MedLinac.dir/src/MedLinacTrackingAction.cc.i: cmake_force
@@ -355,7 +369,7 @@ CMakeFiles/MedLinac.dir/src/MedLinacTrackingAction.cc.s: cmake_force
 CMakeFiles/MedLinac.dir/src/MedLinacVGeometryComponent.cc.o: CMakeFiles/MedLinac.dir/flags.make
 CMakeFiles/MedLinac.dir/src/MedLinacVGeometryComponent.cc.o: /home/aaronkromer/Code/MedLinac/src/MedLinacVGeometryComponent.cc
 CMakeFiles/MedLinac.dir/src/MedLinacVGeometryComponent.cc.o: CMakeFiles/MedLinac.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aaronkromer/Code/MedLinac/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/MedLinac.dir/src/MedLinacVGeometryComponent.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aaronkromer/Code/MedLinac/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/MedLinac.dir/src/MedLinacVGeometryComponent.cc.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MedLinac.dir/src/MedLinacVGeometryComponent.cc.o -MF CMakeFiles/MedLinac.dir/src/MedLinacVGeometryComponent.cc.o.d -o CMakeFiles/MedLinac.dir/src/MedLinacVGeometryComponent.cc.o -c /home/aaronkromer/Code/MedLinac/src/MedLinacVGeometryComponent.cc
 
 CMakeFiles/MedLinac.dir/src/MedLinacVGeometryComponent.cc.i: cmake_force
@@ -369,6 +383,7 @@ CMakeFiles/MedLinac.dir/src/MedLinacVGeometryComponent.cc.s: cmake_force
 # Object files for target MedLinac
 MedLinac_OBJECTS = \
 "CMakeFiles/MedLinac.dir/MedLinac.cc.o" \
+"CMakeFiles/MedLinac.dir/src/MedLinacActionInitialization.cc.o" \
 "CMakeFiles/MedLinac.dir/src/MedLinacAnalysisManager.cc.o" \
 "CMakeFiles/MedLinac.dir/src/MedLinacDecorator.cc.o" \
 "CMakeFiles/MedLinac.dir/src/MedLinacDetectorConstruction.cc.o" \
@@ -394,6 +409,7 @@ MedLinac_OBJECTS = \
 MedLinac_EXTERNAL_OBJECTS =
 
 MedLinac: CMakeFiles/MedLinac.dir/MedLinac.cc.o
+MedLinac: CMakeFiles/MedLinac.dir/src/MedLinacActionInitialization.cc.o
 MedLinac: CMakeFiles/MedLinac.dir/src/MedLinacAnalysisManager.cc.o
 MedLinac: CMakeFiles/MedLinac.dir/src/MedLinacDecorator.cc.o
 MedLinac: CMakeFiles/MedLinac.dir/src/MedLinacDetectorConstruction.cc.o
@@ -450,7 +466,7 @@ MedLinac: /usr/local/geant4/geant4.11.4.1-install/lib64/libG4clhep.so
 MedLinac: /usr/local/geant4/geant4.11.4.1-install/lib64/libG4ptl.so.3.0.0
 MedLinac: /usr/local/geant4/geant4.11.4.1-install/lib64/libG4zlib.so
 MedLinac: CMakeFiles/MedLinac.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/aaronkromer/Code/MedLinac/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Linking CXX executable MedLinac"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/aaronkromer/Code/MedLinac/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Linking CXX executable MedLinac"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/MedLinac.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

@@ -198,6 +198,30 @@ MedLinac.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MedLinac.dir/build.make CMakeFiles/MedLinac.dir/MedLinac.cc.s
 .PHONY : MedLinac.cc.s
 
+src/MedLinacActionInitialization.o: src/MedLinacActionInitialization.cc.o
+.PHONY : src/MedLinacActionInitialization.o
+
+# target to build an object file
+src/MedLinacActionInitialization.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MedLinac.dir/build.make CMakeFiles/MedLinac.dir/src/MedLinacActionInitialization.cc.o
+.PHONY : src/MedLinacActionInitialization.cc.o
+
+src/MedLinacActionInitialization.i: src/MedLinacActionInitialization.cc.i
+.PHONY : src/MedLinacActionInitialization.i
+
+# target to preprocess a source file
+src/MedLinacActionInitialization.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MedLinac.dir/build.make CMakeFiles/MedLinac.dir/src/MedLinacActionInitialization.cc.i
+.PHONY : src/MedLinacActionInitialization.cc.i
+
+src/MedLinacActionInitialization.s: src/MedLinacActionInitialization.cc.s
+.PHONY : src/MedLinacActionInitialization.s
+
+# target to generate assembly for a file
+src/MedLinacActionInitialization.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MedLinac.dir/build.make CMakeFiles/MedLinac.dir/src/MedLinacActionInitialization.cc.s
+.PHONY : src/MedLinacActionInitialization.cc.s
+
 src/MedLinacAnalysisManager.o: src/MedLinacAnalysisManager.cc.o
 .PHONY : src/MedLinacAnalysisManager.o
 
@@ -694,6 +718,9 @@ help:
 	@echo "... MedLinac.o"
 	@echo "... MedLinac.i"
 	@echo "... MedLinac.s"
+	@echo "... src/MedLinacActionInitialization.o"
+	@echo "... src/MedLinacActionInitialization.i"
+	@echo "... src/MedLinacActionInitialization.s"
 	@echo "... src/MedLinacAnalysisManager.o"
 	@echo "... src/MedLinacAnalysisManager.i"
 	@echo "... src/MedLinacAnalysisManager.s"

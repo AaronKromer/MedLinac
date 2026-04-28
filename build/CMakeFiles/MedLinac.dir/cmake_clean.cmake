@@ -2,6 +2,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/MedLinac.dir/link.d"
   "CMakeFiles/MedLinac.dir/MedLinac.cc.o"
   "CMakeFiles/MedLinac.dir/MedLinac.cc.o.d"
+  "CMakeFiles/MedLinac.dir/src/MedLinacActionInitialization.cc.o"
+  "CMakeFiles/MedLinac.dir/src/MedLinacActionInitialization.cc.o.d"
   "CMakeFiles/MedLinac.dir/src/MedLinacAnalysisManager.cc.o"
   "CMakeFiles/MedLinac.dir/src/MedLinacAnalysisManager.cc.o.d"
   "CMakeFiles/MedLinac.dir/src/MedLinacDecorator.cc.o"

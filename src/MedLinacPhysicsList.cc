@@ -88,8 +88,11 @@ void MedLinacPhysicsList::ConstructLeptons()
 void MedLinacPhysicsList::ConstructProcess()
 {
   // Define transportation process
-
+  //method that assigns transportation process to all particles
+  //defined in ConstructParticle()
   AddTransportation();
+  //helper method might be defined by the user 
+  //to add electromagnetic physics processes
   ConstructEM();
 }
 

@@ -30,7 +30,7 @@
 //
 // Code developed by: M. Piergentili
 
-#include "G4RunManager.hh"
+
 #include "G4UImanager.hh"
 #include "G4UIterminal.hh"
 #include "G4UItcsh.hh"
@@ -44,13 +44,14 @@
 #include "MedLinacDetectorConstruction.hh"
 #include "MedLinacPhysicsList.hh"
 #include "MedLinacPhantomSD.hh"
+#include "MedLinacActionInitialization.hh"
 #include "MedLinacPhantomHit.hh"
 #include "MedLinacPrimaryGeneratorAction.hh"
 #include "MedLinacEventAction.hh"
 #include "MedLinacRunAction.hh"
 #include "MedLinacTrackingAction.hh"
 #include "G4SDManager.hh"
-
+#include "G4RunManagerFactory.hh"
 
 #ifdef G4UI_USE_XM
 #include "G4UIXm.hh"
@@ -69,7 +70,9 @@ int main(int argc ,char ** argv)
   CLHEP::HepRandom :: setTheSeed(seed);
 
  // Construct the default run manager
-  G4RunManager* runManager = new G4RunManager;
+  //G4RunManager* runManager = new G4RunManager;
+  auto* runManager = G4RunManagerFactory::CreateRunManager();
+  runManager->SetNumberOfThreads(3);
   G4String sensitiveDetectorName = "Phantom";
   MedLinacDetectorConstruction* pDetectorConstruction = 
 MedLinacDetectorConstruction::GetInstance(sensitiveDetectorName);
@@ -110,14 +113,17 @@ MedLinacDetectorConstruction::GetInstance(sensitiveDetectorName);
 
   // set mandatory user action class
   
-  runManager->SetUserAction(new MedLinacPrimaryGeneratorAction);
-  MedLinacEventAction *pMedLinacEventAction = new MedLinacEventAction();
-  runManager->SetUserAction(pMedLinacEventAction);
+  //runManager->SetUserAction(new MedLinacPrimaryGeneratorAction);
+  //MedLinacEventAction *pMedLinacEventAction = new MedLinacEventAction();
+  //runManager->SetUserAction(pMedLinacEventAction);
 
-  MedLinacRunAction *pRunAction = new MedLinacRunAction();
+  //MedLinacRunAction *pRunAction = new MedLinacRunAction();
 
-  runManager->SetUserAction(pRunAction);  
-  runManager->SetUserAction(new MedLinacTrackingAction);
+  //runManager->SetUserAction(pRunAction);  
+  //runManager->SetUserAction(new MedLinacTrackingAction);
+
+  MedLinacActionInitialization* action= new MedLinacActionInitialization();
+  runManager->SetUserInitialization(action);
 
 
   // Initialize  G4 kernel
