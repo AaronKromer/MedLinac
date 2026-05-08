@@ -451,6 +451,7 @@ MedLinac: /usr/local/geant4/geant4.11.4.1-install/lib64/libG4run.so
 MedLinac: /usr/local/geant4/geant4.11.4.1-install/lib64/libG4event.so
 MedLinac: /usr/local/geant4/geant4.11.4.1-install/lib64/libG4tracking.so
 MedLinac: /usr/local/geant4/geant4.11.4.1-install/lib64/libG4parmodels.so
+MedLinac: /usr/local/lib/libiAIDA.so
 MedLinac: /usr/lib64/libexpat.so
 MedLinac: /usr/local/geant4/geant4.11.4.1-install/lib64/libG4processes_hadronic.so
 MedLinac: /usr/local/geant4/geant4.11.4.1-install/lib64/libG4processes_core.so
