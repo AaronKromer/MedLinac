@@ -1,0 +1,192 @@
+# SCHEDA GEOMETRICA DELLA SIMULAZIONE MEDLINAC
+#
+# Convenzioni:
+# - asse del fascio: z; origine: centro del world.
+# - per G4Box, G4Tubs e G4Cons le dimensioni passate al costruttore sono
+#   semi-dimensioni (half-lengths). Qui sono riportate come nel codice e,
+#   dove utile, anche la dimensione completa.
+# - le coordinate indicate come "locale" sono relative alla vacuumBlock.
+# - le coordinate non impostate nel costruttore devono essere fornite dalla macro.
+
+PARAMETRI GLOBALI:
+    world (experimentalHall): G4Box half-size [3*m, 3*m, 3*m]
+        dimensione completa: [6*m, 6*m, 6*m]
+        materiale: Air
+        posizione: [0, 0, 0], nessuna rotazione
+
+    vacuumBlock:
+        forma: G4Box
+        half-size [9*cm, 9*cm, 8.755*cm]
+        dimensione completa [18*cm, 18*cm, 17.510*cm]
+        materiale: Vacuum/interGalactic
+        posizione nel world: [0, 0, 114.755*cm]
+
+TESTA - FINESTRE E COLLIMATORI:
+
+    windowUp:
+        forma G4Box, half-size [4*cm, 4*cm, 0.0125*cm]
+        dimensione completa [8*cm, 8*cm, 0.025*cm]                              X e Y non INDICATO Z NELLE FAQ A PG 6/23 (7)           
+        materiale: Beryllium                                                    INDICATO A PG 14/23 (30) 
+        posizione world [0, 0, 123.5225*cm]; rotazione 0                        NELLE FAQ A PG 6/23 (7)
+
+    UpperCollimator:
+        forma G4Tubs, raggio interno 1*cm, raggio esterno 8*cm,                 RAGGIO ESTERNO E INTERNO NON SPECIFICATI MA COERENTI CON IL DISEGNO. h NON INDICATA TUTTA, NEL DISEGNO C'è 7,6 MA PARZIALE, COERENTE
+            half-height 4*cm, angoli [0, 360] deg
+        materiale: Tungsteno                                                    INDICATO A PG 14/23 (30) 
+        posizione locale nella vacuumBlock [0, 0, 2.645*cm]                     STARTING POINT +0.4 per starting point del target
+            (world z=117.400*cm); rotazione 0
+
+    collim_cone (apertura interna, volume di vuoto):            
+        forma G4Cons, rmin1=0*cm, rmax1=0.39*cm,    
+            rmin2=0*cm, rmax2=1.89*cm, half-height=3.1*cm,                      ALTEZZA VEDO SIA 6CM(13/23) CHE 6,2(14/23). r NON INDICATI MA CALCOLABILI CON L'ANGOLO DI APERTURA DI 14 GRADI E H
+            angoli [0, 360] deg
+        materiale: Vacuum;                                                      CORRETTO, LA CAMERA è NEL VUOTO
+        posizione: non piazzato direttamente                                
+
+    tracker_tube / CylMinusCone:
+        tracker_tube: G4Tubs, rmin=0*cm, rmax=8*cm,                             APERTURA GIUSTA UGUALE ALL'UPPER, ALTEZZA GIUSTA UGUALE AL CONO
+            half-height=3.1*cm, angoli [0, 360] deg
+        solido finale: tracker_tube - collim_cone
+        materiale del solido finale: Tungsteno                                  INDICATO A PG 14/23 (30)
+        posizione locale nella vacuumBlock [0, 0, -4.455*cm]                    7.1 RISPETTO ALLO STARTING POINT.  4+3.1=7.1 perfettamente attaccati
+            (world z=110.300*cm); rotazione X=180*deg
+
+    windowLow:
+        forma G4Box, half-size [4*cm, 4*cm, 0.0127*cm]                          X e Y non INDICATO, Z A PG 14/23 (30) e FAQ PG 6/23 (7) 
+        dimensione completa [8*cm, 8*cm, 0.0254*cm]                         
+        materiale: Beryllium                                                    INDICATO A PG 14/23 (30)
+        posizione world [0, 0, 105.9873*cm]; rotazione 0                        INDICATI NELLE PARTE DI FAQ PG 6/23 (7) 
+
+    CAMERA A IONIZZAZIONE:
+        Window:
+            forma G4Tubs, rmin=0*cm, rmax=4.7625*cm,
+                half-height=0.0127*cm, angoli [0, 360] deg
+            materiale: Kapton                                                   INDICATO A PG 14/23 (30)
+            posizioni world z: 100.165*cm, 99.450*cm, 98.735*cm                 100.165-98.735=1.43   secondo i calcoli che ho fatto dovrebbe iniziare a 100.7 e finire a 98. All'incirca ci siamo, ma non ho i dettagli solo la visione generica a  PG 14/23 (30) 
+        SignalPlate (4 piastre):
+            forma G4Tubs, rmin=0*cm, rmax=4.7625*cm,
+                half-height=0.00254*cm, angoli [0, 360] deg
+            materiale: Kapton                                                   INDICATO A PG 14/23 (30)        
+            posizioni world z: 99.927*cm, 99.688*cm, 99.212*cm, 98.973*cm
+        tutte le posizioni x,y: [0, 0]; rotazione 0
+
+    Mirror:
+        forma G4Tubs, rmin=0*cm, rmax=6*cm,                                     NON SONO INDICATI
+            half-height=0.00254*cm, angoli [0, 360] deg\\\  
+        materiale: Mylar                                                        INDICATO A PG 14/23 (30)
+        posizione world [0, 0, 93.0*cm]; rotazione Y=35*deg                     ANGOLO INDICATO A PG 14/23 (30), LA DISTANZA GLOBALE CORRETTA, RISPETTO A CAMERA A IONIZZAZIONE NO
+
+    reticle (light field reticle):
+        forma G4Box, half-size [15*cm, 15*cm, 0.00508*cm]                       NON SONO INDICATI
+        dimensione completa [30*cm, 30*cm, 0.01016*cm]
+        materiale: Mylar                                                        INDICATO A PG 14/23 (30)
+        posizione world [0, 0, 65.5*cm]; rotazione 0                            INDICATO A PG 14/23 (30) 49.5 dal target
+
+FOIL ELETTRONICI:                                                               TUTTE LE SPECIFICHE PRESE DA "MONTE CARLO HIGH ENERGY" (pg 53)
+    rotazione comune: X=180*deg; x=y=0
+    riferimento: startingDistance = 102.4375*cm (world z)                       PRESA DA LA MODALITA AD FOTONI, DATO CHE DOVREBBERO ANDARE NELLA STESSA POSIZIONE
+    solidi cilindrici (rmin, rmax, half-height; materiale; z world):
+        sidelower:       2.575*cm, 6.625*cm, 0.054*cm; Aluminum; 102.4375*cm
+        side:             2.575*cm, 3.375*cm, 1.02*cm;  Aluminum; 103.5115*cm
+        alDiskHolder:     0.4*cm,  3.475*cm, 0.004*cm;  Aluminum; 102.3795*cm
+        alDiskHolder2:    0*cm,    2.225*cm, 0.004*cm;  Aluminum; 102.2855*cm
+        alDiskHolder3:    2.225*cm,3.475*cm, 0.08*cm;   Aluminum; 102.2015*cm
+        alDisk:            0*cm,    0.4*cm,   0.011*cm;  Aluminum; 102.3945*cm
+        alDisk2:           0*cm,    0.499*cm, 0.043*cm;  Aluminum; 102.3325*cm
+        taDiskHolder:      2.2*cm,  3.2*cm,   0.075*cm;  Aluminum; 104.6065*cm
+        taDiskHolder3:     G4Cons rmin1=1.425*cm, rmax1=1.575*cm,
+                           rmin2=2.2*cm, rmax2=2.35*cm, half-height=0.52*cm;
+                           Aluminum; 105.2015*cm
+        taDiskHolder2:     0.635*cm,1.575*cm, 0.075*cm; Aluminum; 105.7965*cm
+        taDisk:            0*cm,    0.635*cm, 0.00255*cm; Tantalum; 105.87405*cm
+
+TARGET E FILTRO FOTONICO:
+    targetA:
+        forma G4Box, half-size [0.6*cm, 0.6*cm, 0.04445*cm]
+        dimensione completa [1.2*cm, 1.2*cm, 0.0889*cm]
+        materiale: Tungsteno; posizione locale vacuumBlock [0,0,0.20055*cm]
+            (world z=114.95555*cm); rotazione 0
+    targetB:
+        forma G4Box, half-size [0.6*cm, 0.6*cm, 0.07874*cm]
+        dimensione completa [1.2*cm, 1.2*cm, 0.15748*cm]
+        materiale: Copper (densita 8.960*g/cm3, massa atomica 63.55*g/mole)
+        posizione locale vacuumBlock [0,0,0.07736*cm]
+            (world z=114.83236*cm); rotazione 0
+    flattening filter: 18 layer coniche + layer19, layer20 composito, layer21.
+        tutte centrate x=y=0; layer1-18 rotazione X=180*deg;
+        materiale pieno: Copper (eccetto il vuoto del foro di layer20).
+        Per ogni G4Cons: (rmin1, rmax1) e (rmin2, rmax2) sono i raggi
+        alle due estremita; half-height e posizione z sono elencati sotto.
+        layer1:  (0,0.00000001) -> (0,0.025) cm; h=0.006 cm; z=103.301 cm
+        layer2:  (0,0.025) -> (0,0.050) cm; h=0.0065 cm; z=103.2885 cm
+        layer3:  (0,0.050) -> (0,0.075) cm; h=0.0075 cm; z=103.2745 cm
+        layer4:  (0,0.075) -> (0,0.100) cm; h=0.009 cm; z=103.258 cm
+        layer5:  (0,0.100) -> (0,0.150) cm; h=0.022 cm; z=103.227 cm
+        layer6:  (0,0.150) -> (0,0.200) cm; h=0.024 cm; z=103.181 cm
+        layer7:  (0,0.200) -> (0,0.250) cm; h=0.023 cm; z=103.134 cm
+        layer8:  (0,0.250) -> (0,0.300) cm; h=0.023 cm; z=103.088 cm
+        layer9:  (0,0.300) -> (0,0.350) cm; h=0.0225 cm; z=103.0425 cm
+        layer10: (0,0.350) -> (0,0.400) cm; h=0.022 cm; z=102.998 cm
+        layer11: (0,0.400) -> (0,0.500) cm; h=0.0425 cm; z=102.9335 cm
+        layer12: (0,0.500) -> (0,0.600) cm; h=0.0395 cm; z=102.8515 cm
+        layer13: (0,0.600) -> (0,0.700) cm; h=0.038 cm; z=102.774 cm
+        layer14: (0,0.700) -> (0,0.800) cm; h=0.0335 cm; z=102.7025 cm
+        layer15: (0,0.800) -> (0,0.900) cm; h=0.0325 cm; z=102.6365 cm
+        layer16: (0,0.900) -> (0,1.000) cm; h=0.028 cm; z=102.576 cm
+        layer17: (0,1.000) -> (0,1.100) cm; h=0.0275 cm; z=102.5205 cm
+        layer18: (0,1.100) -> (0,1.205) cm; h=0.019 cm; z=102.474 cm
+        layer19: G4Tubs rmin=0, rmax=1.325 cm; h=0.040 cm;
+             z=101.884 cm (z18-0.59*cm); rotazione 0
+        layer20A: G4Tubs rmin=1.300, rmax=1.325 cm; h=0.0225 cm
+        cone20 (foro): G4Cons rmin1=rmin2=0, rmax1=1.326, rmax2=1.301 cm;
+                 h=0.0225 cm; materiale Air
+        layer20 = layer20A - cone20; Copper; z=102.499 cm (z19+0.615*cm); rotazione 0
+        layer21: G4Tubs rmin=1.325, rmax=1.500 cm; h=0.0625 cm;
+                 z=102.099 cm (z20-0.4*cm); rotazione 0
+
+JAWS (default field X/Y = +/-2.5*cm):                                           LE JAWS SONO INDICATE SOLAMENTE PER LA Z, IL RESTO PRESO DA UN DOCUMENTO SU PANDORA (LOW ENERGY v2 PG 12)
+    materiale: Tungsteno; posizioni calcolate puntando a 100*cm.
+    JawY1: G4Box half-size [9.40*cm, 5.97*cm, 3.88*cm]
+        completa [18.80, 11.94, 7.76] cm; x=0;
+        theta=atan(-fieldY1/(100*cm)); rotazione X=theta;                       POSIZIONE DATA DA LA GRNDEZZA DEL CAMPO IMPOSTATA, FORMULA MI SEMBRA SENSATA. NON LA HO VISTA DA NESSUNA PARTE
+        y=-((3.9+28)*sin(theta)+5.97*cos(theta))*cm;
+        z=115*cm-(3.9+28)*cos(theta)*cm+5.97*sin(theta)*cm
+
+    JawY2: stessa misura; 
+        theta=atan(fieldY2/(100*cm)); rotazione X=-theta;
+        y=((3.9+28)*sin(theta)+5.97*cos(theta))*cm;
+        z=115*cm-(3.9+28)*cos(theta)*cm+5.97*sin(theta)*cm
+
+    JawX1: G4Box half-size [6.73*cm, 10.92*cm, 3.88*cm]
+        completa [13.46, 21.84, 7.76] cm; y=0;
+        theta=atan(-fieldX1/(100*cm)); rotazione Y=-theta;
+        x=-((36.7+3.9)*sin(theta)+6.73*cos(theta))*cm;
+        z=115*cm-(36.7+3.9)*cos(theta)*cm+6.73*sin(theta)*cm
+
+    JawX2: stessa misura; 
+        theta=atan(fieldX2/(100*cm)); rotazione Y=theta;
+        x=((36.7+3.9)*sin(theta)+6.73*cos(theta))*cm;
+        z=115*cm-(36.7+3.9)*cos(theta)*cm+6.73*sin(theta)*cm
+
+MLC (80 foglie: A1-A40 e B1-B40):                                           DOCUMENTO MLC, NELLA MODALITA ELETTRONI NON VENGONO USATI
+    preLeaf_box: G4Box half-size [2.715*mm, 64.72066*mm, 29.3*mm]
+    preLeaf displacement nella forma: [0, 0, -50*cm]
+    leaf end: G4Tubs rmin=0.01*mm, rmax=80*mm, half-height=2.715*mm,
+        angoli [0,180] deg; displacement [0, -9.4413249*mm, -50*cm],
+        rotazione Y=90 deg
+    gap sottratto: G4Box half-size [90.00*mm, 74.18*mm, 3.0*mm]
+    cutA sottratto: half-size [0.20*mm, 68.0*mm, 15.925*mm],
+        posizione [-2.515*mm, 3.0*mm, -48.6625*cm]
+    cutB sottratto: half-size [0.1625*mm, 68.0*mm, 14.415*mm],
+        posizione [2.5525*mm, 3.0*mm, -51.4885*cm]
+    solido finale: ((preLeaf + leafEnd) - cutA) - cutB
+    foglie A:
+        x iniziale=-111.335*mm; passo x=5.431*mm; z=97.25*cm;
+        x(i)=x(i-1)+5.431*mm; y(i)=-((yA(i)*(100-47.25))/100+70.5587*mm);
+        rotazione 0; yA1...yA40=40*cm di default.
+    foglie B:
+        x iniziale=-111.335*mm; passo x=5.431*mm; z=-2.75*cm;
+        x(i)=x(i-1)+5.431*mm; y(i)=((yB(i)*(100-47.25))/100+70.5587*mm);
+        rotazione X=180*deg; yB1...yB40=40*cm di default.
+    nota: le posizioni yA/yB sono modificabili dalle macro MLC; i valori sopra
+        sono solo i default del costruttore.

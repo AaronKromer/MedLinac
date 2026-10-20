@@ -30,56 +30,69 @@
 
 #include "MedLinacRunAction.hh"
 #include "MedLinacEventAction.hh"
+#include <G4SystemOfUnits.hh>
 
-#include "G4Run.hh"
-#include "G4RunManager.hh"
-#include "G4UImanager.hh"
-#include "G4VVisManager.hh"
-#include "G4ios.hh"
-#include "MedLinacDetectorConstruction.hh"
-#include "G4SDManager.hh"
-#include "G4Timer.hh"
+ #include "MedLinacRun.hh"
+ #include "G4Run.hh"
+ #include "G4RunManager.hh"
+ #include "G4UImanager.hh"
+ #include "G4VVisManager.hh"
+ #include "G4ios.hh"
+ #include "MedLinacDetectorConstruction.hh"
+ #include "G4SDManager.hh"
+ #include "G4Timer.hh"
 
 #ifdef G4ANALYSIS_USE
 #include "MedLinacAnalysisManager.hh"
 #endif
 
-
 MedLinacRunAction::MedLinacRunAction()
 {
 }
 
-
 MedLinacRunAction::~MedLinacRunAction()
-{ 
+{
+}
+
+G4Run* MedLinacRunAction::GenerateRun()
+{
+  return new MedLinacRun();
 }
 
 void MedLinacRunAction::BeginOfRunAction(const G4Run* aRun)
 {
+  if (IsMaster()) {
+    G4cout << "### Run " << aRun->GetRunID() << " start." << G4endl;
 #ifdef G4ANALYSIS_USE
-  MedLinacAnalysisManager* analysis = MedLinacAnalysisManager::getInstance();
-  analysis->book();
+    MedLinacAnalysisManager* analysis = MedLinacAnalysisManager::getInstance();
+    analysis->book();
 #endif
-
+  }
 
   G4cout << "### Run " << aRun->GetRunID() << " start." << G4endl;
-
 }
 
 void MedLinacRunAction::EndOfRunAction(const G4Run* aRun)
 {
-  
+  const MedLinacRun* theRun = static_cast<const MedLinacRun*>(aRun);
+  if (IsMaster()) {
+    G4cout << "### Run " << aRun->GetRunID() << " end." << G4endl;
+    G4cout << "number of event = " << aRun->GetNumberOfEvent() << G4endl;
 #ifdef G4ANALYSIS_USE
-  MedLinacAnalysisManager* analysis = MedLinacAnalysisManager::getInstance();
+    MedLinacAnalysisManager* analysis = MedLinacAnalysisManager::getInstance();
+    const auto& hits = theRun->GetHits();
+    for (const auto& hit : hits) {
+      MedLinacEventAction::AnalyzeHit(hit, true);
+    }
+    // analysis->finish() is deliberately NOT called here: with several
+    // /run/beamOn commands in one macro this would close the AIDA tree
+    // after the first run and corrupt/overwrite it for later runs.
+    // The tree is committed/closed once, at job termination, in MedLinac.cc.
 #endif
-  G4cout << "number of event = " << aRun->GetNumberOfEvent() << G4endl;
-  
-#ifdef G4ANALYSIS_USE      
-  analysis->finish();
-#endif
-
-
+  }
 }
+
+
 
 
 

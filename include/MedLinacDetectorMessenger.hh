@@ -66,10 +66,13 @@ class MedLinacDetectorMessenger: public G4UImessenger
     G4UIcmdWithADoubleAndUnit* JawY2PosCmd;
 
     G4UIcmdWithADoubleAndUnit* PhantomDimCmd;
+    G4UIcmdWithADoubleAndUnit* PhantomDistCmd;
     G4UIcmdWithAnInteger* NVoxelsCmd;
     G4UIcmdWithADoubleAndUnit* MaxStepCmd;
    
     G4UIcmdWithoutParameter*   UpdateCmd;
+    G4UIcmdWithoutParameter*   ElectronCmd;
+    G4UIcmdWithoutParameter*   PhotonCmd;
 };
 
 //****************************************************************************

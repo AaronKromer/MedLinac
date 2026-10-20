@@ -34,8 +34,9 @@
 #include "MedLinacPhantomSD.hh"
 #include "MedLinacPhantomMessenger.hh"
 #include "MedLinacPhantomHit.hh"
+#include "MedLinacEventAction.hh"
 #include "MedLinacAnalysisManager.hh"
-#include "MedLinacPhantomMessenger.hh"
+#include "G4EventManager.hh"
 #include "MedLinacDetectorConstruction.hh"
 #include "G4Track.hh"
 #include "G4LogicalVolume.hh"
@@ -48,13 +49,21 @@
 
 //....
 
-MedLinacPhantomSD::MedLinacPhantomSD(G4String name):G4VSensitiveDetector(name)
+MedLinacPhantomSD::MedLinacPhantomSD(G4String name):G4VSensitiveDetector(name),
+  phantomDimension(0.), numberOfPhantomVoxels(0),
+  fDebugTotalHits(0), fDebugCentralZHits(0), fDebugCentralXHits(0), fDebugCentralYHits(0),
+  fDebugPrintedSamples(0)
 {
  phantomMessenger = new MedLinacPhantomMessenger(this);
 }
 
 MedLinacPhantomSD::~MedLinacPhantomSD()
 {
+  G4cout << "CENTRAL_HIT_DEBUG [thread summary] totalHits=" << fDebugTotalHits
+         << " centralZHits=" << fDebugCentralZHits
+         << " centralXHits=" << fDebugCentralXHits
+         << " centralYHits=" << fDebugCentralYHits
+         << G4endl;
   delete phantomMessenger;
 }
 
@@ -76,169 +85,35 @@ void MedLinacPhantomSD::SetNumberOfPhantomVoxels (G4int val)
 
 G4bool MedLinacPhantomSD::ProcessHits(G4Step* aStep, G4TouchableHistory* ROhist)
 {
-  if(!ROhist)
-    return false;
+  const G4VTouchable* touch = aStep->GetPreStepPoint()->GetTouchable();
 
-  if(aStep->GetPreStepPoint()->GetPhysicalVolume()->GetName() != "Phantom_phys")
-    return false;
+  // Replica/parameterisation layout in this geometry:
+  // depth 0 : parameterised Z (voxel)
+  // depth 1 : X replica (mother of voxel)
+  // depth 2 : Y replica (grandmother)
+  G4int k = touch->GetCopyNumber(0); // Z index (depth 0)
+  G4int i = touch->GetCopyNumber(1); // X index (depth 1)
+  G4int j = touch->GetCopyNumber(2); // Y index (depth 2)
 
   G4double energyDep = aStep->GetTotalEnergyDeposit();
   if(energyDep == 0.)
-    return false;
-
-    // Read Voxel indexes: i is the x index, k is the z index
-  G4int k = ROhist->GetReplicaNumber(1);
-  G4int i = ROhist->GetReplicaNumber(2);
-  G4int j = ROhist->GetReplicaNumber();
-  
-  //G4int numberOfVoxelZ = 150;
-  //G4double voxelWidthZ = 2. *mm;
+  return false;
   G4int numberOfVoxelZ = numberOfPhantomVoxels;
-  G4double voxelWidthZ = phantomDimension/numberOfVoxelZ;
-  //G4cout <<"########## phantomDimension  "<< phantomDimension/mm<<"mm"<<G4endl;
-  //G4cout <<"########## numberOfVoxelZ "<<numberOfVoxelZ <<G4endl;
-  //G4cout <<"########## voxelWidthZ "<<voxelWidthZ <<G4endl;
+  G4float voxelWidthZ = phantomDimension/numberOfVoxelZ;
+  G4float x = ((- numberOfVoxelZ+1+2*i)*voxelWidthZ)/2; 
+  G4float y = ((- numberOfVoxelZ+1+2*j)*voxelWidthZ)/2;
+  G4float z = ((- numberOfVoxelZ+1+2*k)*voxelWidthZ)/2;
+  
 
-  G4double x = (-numberOfVoxelZ+1+2*i)*voxelWidthZ; 
-  G4double y = (- numberOfVoxelZ+1+2*j)*voxelWidthZ;
-  G4double z = (- numberOfVoxelZ+1+2*k)*voxelWidthZ;
-
- if(energyDep != 0)                       
-	    {       
-	     #ifdef G4ANALYSIS_USE	
-                 MedLinacAnalysisManager* analysis = 
-                                      MedLinacAnalysisManager::getInstance();   
-//**** PDD in isocenter (Y and X Thickness = 5. mm) *********** 	   
-	  if(energyDep != 0)                       
-	    { 
-	      if (y<=2.5*mm){if (y>= -2.5*mm)
-		{
-		  if(x<=2.5*mm){if (x>= -2.5*mm)
-		{analysis->FillHistogram1WithEnergy(z,energyDep/MeV);}
-		  }
-		}
-	      }
-	    }
-//***** flatness  along x ***** Depth=build-up (15 mm)*************************
-  if(energyDep != 0)                       
-    {  
-       if (z<=137.5*mm){if (z>= 132.5*mm) 
-	 { if (y<=2.5*mm){if (y>= -2.5*mm)
-       {analysis->FillHistogram2WithEnergy(x,energyDep/MeV);}
-	 }
-	 }
-       }
-    }
-
-//***** flatness  along x ***** Depth=50mm 5*********************************
-  if(energyDep != 0)                       
-    {  
-      if (z<=102.5*mm){if (z>= 97.5*mm)
-	 { if (y<=2.5*mm){if (y>= -2.5*mm)
-       {analysis->FillHistogram3WithEnergy(x,energyDep/MeV);}
-	 }}}}
-
-//***** flatness  along x ***** Depth=100 mm********************************
-  if(energyDep != 0)
-    {
-      if (z<=52.5*mm){if (z>= 47.5*mm)
-         { if (y<=2.5*mm){if (y>= -2.5*mm)
-       {analysis->FillHistogram4WithEnergy(x,energyDep/MeV);}                                                             
-                        }}}}
-//***** flatness  along x ***** Depth=200 mm********************************
-  if(energyDep != 0)
-    {
-      if (z<=-47.5*mm){if (z>= -52.5*mm)
-         { if (y<=2.5*mm){if (y>= -2.5*mm)
-       {analysis->FillHistogram5WithEnergy(x,energyDep/MeV);} 
-                        }}}}
-//**** PDD in isocenter (Y and X Thickness = 5. mm) *********** 	   
-	  if(energyDep != 0)                       
-	    { 
-	      if (y<=2.5*mm){if (y>= -2.5*mm)
-		{
-		  if(x<=2.5*mm){if (x>= -2.5*mm)
-		{analysis->FillHistogram6WithEnergy(z,energyDep/MeV);}
-		  }}}}
-
-//***** flatness  along x ***** Depth=build-up (15 mm)*************************
-  if(energyDep != 0)                       
-    {  
-       if (z<=137.5*mm){if (z>= 132.5*mm) 
-	 { if (y<=2.5*mm){if (y>= -2.5*mm)
-       {analysis->FillHistogram7WithEnergy(x,energyDep/MeV);}
-	                }}}}
-//***** flatness  along x ***** Depth=50mm*********************************
-  if(energyDep != 0)                       
-    {  
-      if (z<=102.5*mm){if (z>= 97.5*mm)
-	 { if (y<=2.5*mm){if (y>= -2.5*mm)
-       {analysis->FillHistogram8WithEnergy(x,energyDep/MeV);}
-	                }}}}
-//***** flatness  along x ***** Depth=100 mm********************************
-  if(energyDep != 0)                       
-    {  
-      if (z<=52.5*mm){if (z>= 47.5*mm) 
-	 { if (y<=2.5*mm){if (y>= -2.5*mm)
-       {analysis->FillHistogram9WithEnergy(x,energyDep/MeV);}
-	                }}}}
-//***** flatness  along x ***** Depth=200 mm********************************
-  if(energyDep != 0)                       
-    {  
-      if (z<=-47.5*mm){if (z>= -52.5*mm)
-	 { if (y<=2.5*mm){if (y>= -2.5*mm)
-       {analysis->FillHistogram10WithEnergy(x,energyDep/MeV);}
-	                }
-	 }
-                     }
-    }
-
-//**** PDD in isocenter (Y and X Thickness = 5. mm) ***********
-          if(energyDep != 0)
-            {
-              if (y<=2.5*mm){if (y>= -2.5*mm)
-                {
-                  if(x<=2.5*mm){if (x>= -2.5*mm)
-                {analysis->FillHistogram11WithEnergy(z,energyDep/MeV);}
-                  }
-                }
-              }
-            }
-//***** flatness  along x ***** Depth=build-up (15 mm)*************************
-  if(energyDep != 0)
-    {
-       if (z<=137.5*mm){if (z>= 132.5*mm)
-         { if (y<=2.5*mm){if (y>= -2.5*mm)
-       {analysis->FillHistogram12WithEnergy(x,energyDep/MeV);}
-         }
-         }
-       }
-    }              
-//***** flatness  along x ***** Depth=50mm 5*********************************
-  if(energyDep != 0)
-    {
-      if (z<=102.5*mm){if (z>= 97.5*mm)
-         { if (y<=2.5*mm){if (y>= -2.5*mm)
-       {analysis->FillHistogram13WithEnergy(x,energyDep/MeV);}
-         }}}}
-//***** flatness  along x ***** Depth=100 mm********************************
-  if(energyDep != 0)
-    {
-      if (z<=52.5*mm){if (z>= 47.5*mm)
-         { if (y<=2.5*mm){if (y>= -2.5*mm)
-       {analysis->FillHistogram14WithEnergy(x,energyDep/MeV);}
-                        }}}}
-//***** flatness  along x ***** Depth=200 mm********************************
-  if(energyDep != 0)
-    {
-      if (z<=-47.5*mm){if (z>= -52.5*mm)
-         { if (y<=2.5*mm){if (y>= -2.5*mm)
-       {analysis->FillHistogram15WithEnergy(x,energyDep/MeV);}
-     }}}}
-
-#endif 	       
-	    }
-return true;
+  struct MedLinacHit hit1= {x,y,z,energyDep};
+  G4EventManager* eventManager = G4EventManager::GetEventManager();
+  G4UserEventAction* eventAction = (eventManager ? eventManager->GetUserEventAction() : nullptr);
+  G4bool collectHit = MedLinacEventAction::AnalyzeHit(hit1, false);
+  if (eventAction && collectHit) {
+    MedLinacEventAction* mla = static_cast<MedLinacEventAction*>(eventAction);
+    mla->AddHit(hit1);
+  }
+  return true;
 }
 
 void MedLinacPhantomSD::EndOfEvent(G4HCofThisEvent*)

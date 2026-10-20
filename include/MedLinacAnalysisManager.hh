@@ -33,14 +33,19 @@
 //
 #ifdef G4ANALYSIS_USE
 #ifndef G4PROCESSTESTANALYSIS_HH
-#define G4PROCESSTESTANALYSIS_HH
+#define G4PROCESSTESTANALYSIS_HH 
 
 #include "globals.hh"
 #include <vector>
 #include "G4ThreeVector.hh"
+#include "MedLinacEventAction.hh"
 #include "AIDA/IHistogram1D.h"
 #include "AIDA/IHistogram2D.h"
 #include "AIDA/IAnalysisFactory.h"
+
+
+// run-level hit storage is managed by MedLinacRun; AnalysisManager keeps
+// an optional internal buffer if AddHit() is called directly.
 
 namespace AIDA{
   class ITree;
@@ -68,27 +73,21 @@ public:
   void FillHistogram7WithEnergy(G4double,G4float);
   void FillHistogram8WithEnergy(G4double,G4float);
   void FillHistogram9WithEnergy(G4double,G4float);
-  void FillHistogram10WithEnergy(G4double,G4float);
-  void FillHistogram11WithEnergy(G4double,G4float);
-  void FillHistogram12WithEnergy(G4double,G4float);
-  void FillHistogram13WithEnergy(G4double,G4float);
-  void FillHistogram14WithEnergy(G4double,G4float);
-  void FillHistogram15WithEnergy(G4double,G4float);
   void finish();
-
 private:
 
   G4double xx,zz,yy;
   G4float  en; 
-  G4double  x,y,z;
   static MedLinacAnalysisManager* instance;
+  G4bool booked;
+  G4bool finished;
 
 private:
-
   AIDA::IAnalysisFactory*  aFact;
   AIDA::ITree*             theTree;
   AIDA::IHistogramFactory *histFact;
   AIDA::ITreeFactory      *treeFact;
+  AIDA::IHistogram1D *hBase;
   AIDA::IHistogram1D *h1;
   AIDA::IHistogram1D *h2;
   AIDA::IHistogram1D *h3;
@@ -98,12 +97,6 @@ private:
   AIDA::IHistogram1D *h7;
   AIDA::IHistogram1D *h8;
   AIDA::IHistogram1D *h9;
-  AIDA::IHistogram1D *h10;
-  AIDA::IHistogram1D *h11;
-  AIDA::IHistogram1D *h12;
-  AIDA::IHistogram1D *h13;
-  AIDA::IHistogram1D *h14;
-  AIDA::IHistogram1D *h15;
 };
 
 #endif

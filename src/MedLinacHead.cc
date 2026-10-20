@@ -24,7 +24,7 @@
 // ********************************************************************
 //
 //
-// $Id: MedLinacHead.cc,v 1.3 2006/06/29 16:04:25 gunter Exp $
+// $Id: MedLinacHead.cc,v 1.3 2006/06/28 16:04:25 gunter Exp $
 //
 // Code developed by: M. Piergentili
 //
@@ -221,14 +221,14 @@ void MedLinacHead::ConstructComponent(G4VPhysicalVolume* world,G4VPhysicalVolume
   //------------------------------ beam line along z axis---------------------  
   //--------------------window upper-------------------
 
-  G4double windowUpDim_x = 4.*cm;
-  G4double windowUpDim_y = 4.*cm;
-  G4double windowUpDim_z = 0.0125*cm;
+  G4double windowUpDim_x = 4.5*cm;
+  G4double windowUpDim_y = 4.9*cm;
+  G4double windowUpDim_z = 0.0165*cm;
   G4Box* windowUp_box = new G4Box("windowUp_box",windowUpDim_x,windowUpDim_y,windowUpDim_z);
   windowUp_log = new G4LogicalVolume(windowUp_box,Be,"windowUp_log",0,0,0);
   G4double windowUpPos_x = 0.0*m;
   G4double windowUpPos_y = 0.0*m;
-  G4double windowUpPos_z = 123.5225*cm;
+  G4double windowUpPos_z = 128.5225*cm;
   windowUp_phys = new G4PVPlacement(0,
             G4ThreeVector(windowUpPos_x,windowUpPos_y,windowUpPos_z),
             "windowUp",windowUp_log,world,false,0);
@@ -237,9 +237,9 @@ void MedLinacHead::ConstructComponent(G4VPhysicalVolume* world,G4VPhysicalVolume
   //-------------------- the first collimator upper----------------
 
 
-  G4double innerRadiusOfTheTubeEx = 1.0*cm;
-  G4double outerRadiusOfTheTubeEx = 8.*cm;
-  G4double hightOfTheTubeEx = 4.0*cm;
+  G4double innerRadiusOfTheTubeEx = 1.9*cm;
+  G4double outerRadiusOfTheTubeEx = 8.4*cm;
+  G4double hightOfTheTubeEx = 4.6*cm;
   G4double startAngleOfTheTubeEx = 0.*deg;
   G4double spanningAngleOfTheTubeEx = 360.*deg;
   G4Tubs* UpperCollimator = new G4Tubs("UpperCollimator",innerRadiusOfTheTubeEx,
@@ -249,7 +249,7 @@ void MedLinacHead::ConstructComponent(G4VPhysicalVolume* world,G4VPhysicalVolume
 
   G4double UpperCollimatorPosX = 0.*cm;
   G4double UpperCollimatorPosY = 0.*cm;
-  G4double UpperCollimatorPosZ = 2.645*cm;
+  G4double UpperCollimatorPosZ = 2.945*cm;
 
   UpperCollimator_phys = new G4PVPlacement(0,
 					   G4ThreeVector(UpperCollimatorPosX,UpperCollimatorPosY,
@@ -258,11 +258,11 @@ void MedLinacHead::ConstructComponent(G4VPhysicalVolume* world,G4VPhysicalVolume
   //-------------------- the first collimator lower----------------
 
   G4double  pRmin1 = 0.*cm;
-  //G4double  pRmax1 = 0.3352897*cm;
-  G4double  pRmax1 = 0.5*cm;
+  //G4double  pRmax1 = 0.3352887*cm;
+  G4double  pRmax1 = 0.28*cm;
   G4double  pRmin2 = 0.*cm;
-  G4double  pRmax2 = 1.7658592*cm;
-  G4double  hightOfTheCone =3.2*cm;
+  G4double  pRmax2 =1.58*cm;
+  G4double  hightOfTheCone =3.9*cm;
   G4double  startAngleOfTheCone = 0.*deg;
   G4double  spanningAngleOfTheCone = 360.*deg;
 
@@ -274,7 +274,7 @@ void MedLinacHead::ConstructComponent(G4VPhysicalVolume* world,G4VPhysicalVolume
 
   G4double innerRadiusOfTheTube = 0.*cm;
   G4double outerRadiusOfTheTube = 8.*cm;
-  G4double hightOfTheTube = 3.1*cm;
+  G4double hightOfTheTube = 3.6*cm;
   G4double startAngleOfTheTube = 0.*deg;
   G4double spanningAngleOfTheTube = 360.*deg;
   G4Tubs* tracker_tube = new G4Tubs("tracker_tube",innerRadiusOfTheTube,
@@ -287,7 +287,7 @@ void MedLinacHead::ConstructComponent(G4VPhysicalVolume* world,G4VPhysicalVolume
   auto CylMinusCone_log = new G4LogicalVolume(CylMinusCone,W,"CylminusCone_log",0,0,0);
   G4double CminusCPos_x = 0.*cm;
   G4double CminusCPos_y = 0.*cm;
-  G4double CminusCPos_z = -4.455*cm;
+  G4double CminusCPos_z = -4.155*cm;
   auto CylMinusCone_phys = new G4PVPlacement(rotateMatrix, G4ThreeVector(CminusCPos_x,CminusCPos_y,CminusCPos_z), "CylMinusCone",CylMinusCone_log,vacuumBlock,false,0);
   
   
@@ -298,14 +298,14 @@ void MedLinacHead::ConstructComponent(G4VPhysicalVolume* world,G4VPhysicalVolume
 
   G4double windowLowDim_x = 4.*cm;
   G4double windowLowDim_y = 4.*cm;
-  G4double windowLowDim_z = 0.0127*cm;
+  G4double windowLowDim_z = 0.0427*cm;
   G4Box* windowLow_box = new G4Box("windowLow_box",windowLowDim_x,windowLowDim_y,windowLowDim_z);
 
   windowLow_log = new G4LogicalVolume(windowLow_box,Be,"windowLow_log",0,0,0);
 
   G4double windowLowPos_x = 0.0*m;
   G4double windowLowPos_y = 0.0*m;
-  G4double windowLowPos_z = 105.9873*cm;
+  G4double windowLowPos_z = 103.8873*cm;
 
   windowLow_phys = new G4PVPlacement(0,
             G4ThreeVector(windowLowPos_x,windowLowPos_y,windowLowPos_z),
@@ -315,9 +315,9 @@ void MedLinacHead::ConstructComponent(G4VPhysicalVolume* world,G4VPhysicalVolume
     //---------------Ion chamber------------------------
 
   G4double innerRadiusOfTheIonChamber = 0.*cm;
-  G4double outerRadiusOfTheIonChamber = 4.7625*cm;
-  G4double hightOfTheWindows = 0.0127*cm;
-  G4double hightOfTheSignalPlates = 0.00254*cm;
+  G4double outerRadiusOfTheIonChamber = 4.5625*cm;
+  G4double hightOfTheWindows = 0.0147*cm;
+  G4double hightOfTheSignalPlates = 0.00284*cm;
   G4double startAngleOfTheIonChamber = 0.*deg;
   G4double spanningAngleOfTheIonChamber = 360.*deg;
   G4double IonChamberPos_x = 0.0*cm;
@@ -339,49 +339,49 @@ void MedLinacHead::ConstructComponent(G4VPhysicalVolume* world,G4VPhysicalVolume
 
   //-----Ion chamber----window 1---------------------
 
-  G4double Window1Pos_z = 100.165*cm;
+  G4double Window1Pos_z = 101.165*cm;
   Window1_phys = new G4PVPlacement(0,
            G4ThreeVector(IonChamberPos_x,IonChamberPos_y,Window1Pos_z),
            "Window",Window_log,world,false,0);
 
  //------Ion chamber---Signal Plate 1---------------------
 
-  G4double SignalPlate1Pos_z = 99.927*cm;
+  G4double SignalPlate1Pos_z = 88.527*cm;
   SignalPlate1_phys = new G4PVPlacement(0,
            G4ThreeVector(IonChamberPos_x,IonChamberPos_y,SignalPlate1Pos_z),
            "SignalPlate",SignalPlate_log,world,false,0);
 
  //------Ion chamber---Signal Plate 2---------------------
 
-  G4double SignalPlate2Pos_z = 99.688*cm;
+  G4double SignalPlate2Pos_z = 83.688*cm;
   SignalPlate2_phys = new G4PVPlacement(0,
            G4ThreeVector(IonChamberPos_x,IonChamberPos_y,SignalPlate2Pos_z),
            "SignalPlate",SignalPlate_log,world,false,0);
 
  //------Ion chamber---window 2---------------------
 
-  G4double Window2Pos_z = 99.45*cm;
+  G4double Window2Pos_z = 98.45*cm;
   Window2_phys = new G4PVPlacement(0,
            G4ThreeVector(IonChamberPos_x,IonChamberPos_y,Window2Pos_z),
            "Window",Window_log,world,false,0);
 
  //------Ion chamber---Signal Plate 3---------------------
 
-  G4double SignalPlate3Pos_z = 99.212*cm;
+  G4double SignalPlate3Pos_z = 89.212*cm;
   SignalPlate3_phys = new G4PVPlacement(0,
 					G4ThreeVector(IonChamberPos_x,IonChamberPos_y,SignalPlate3Pos_z),
 					"SignalPlate",SignalPlate_log,world,false,0);
 
  //------Ion chamber---Signal Plate 4---------------------
 
-  G4double SignalPlate4Pos_z = 98.973*cm;
+  G4double SignalPlate4Pos_z = 81.873*cm;
   SignalPlate4_phys = new G4PVPlacement(0,
 					G4ThreeVector(IonChamberPos_x,IonChamberPos_y,SignalPlate4Pos_z),
 					"SignalPlate",SignalPlate_log,world,false,0);
 
  //------Ion chamber---window 3---------------------
 
-  G4double Window3Pos_z = 98.735*cm;
+  G4double Window3Pos_z = 86.735*cm;
   Window3_phys = new G4PVPlacement(0,
            G4ThreeVector(IonChamberPos_x,IonChamberPos_y,Window3Pos_z),
            "Window",Window_log,world,false,0);
@@ -391,7 +391,7 @@ void MedLinacHead::ConstructComponent(G4VPhysicalVolume* world,G4VPhysicalVolume
 
   G4double innerRadiusOfTheMirror = 0.*cm;
   G4double outerRadiusOfTheMirror = 6.*cm;
-  G4double hightOfTheMirror = 0.00254*cm;
+  G4double hightOfTheMirror = 0.00294*cm;
   G4double startAngleOfTheMirror = 0.*deg;
   G4double spanningAngleOfTheMirror = 360.*deg;
   G4Tubs* Mirror = new G4Tubs("Mirror",innerRadiusOfTheMirror,
@@ -401,7 +401,7 @@ void MedLinacHead::ConstructComponent(G4VPhysicalVolume* world,G4VPhysicalVolume
   Mirror_log = new G4LogicalVolume(Mirror,Mylar,"Mirror_log",0,0,0);
   G4double MirrorPos_x = 0.0*cm;
   G4double MirrorPos_y = 0.0*cm;
-  G4double MirrorPos_z = 93.0*cm;
+  G4double MirrorPos_z = 83.0*cm;
   Mirror_phys = new G4PVPlacement(rotateMirror,
            G4ThreeVector(MirrorPos_x,MirrorPos_y,MirrorPos_z),
            "Mirror",Mirror_log,world,false,0);
@@ -410,7 +410,7 @@ void MedLinacHead::ConstructComponent(G4VPhysicalVolume* world,G4VPhysicalVolume
 
   G4double reticleDim_x = 15.0*cm;
   G4double reticleDim_y = 15.0*cm;
-  G4double reticleDim_z = 0.00508*cm;
+  G4double reticleDim_z = 0.00408*cm;
   G4Box* reticle = new G4Box("reticle",reticleDim_x,
                                   reticleDim_y,reticleDim_z);
   reticle_log = new G4LogicalVolume(reticle,
@@ -418,7 +418,7 @@ void MedLinacHead::ConstructComponent(G4VPhysicalVolume* world,G4VPhysicalVolume
 
   G4double reticlePos_x = 0.0*cm;
   G4double reticlePos_y = 0.0*cm;
-  G4double reticlePos_z = 65.5*cm;
+  G4double reticlePos_z = 66.54*cm;
   reticle_phys = new G4PVPlacement(0,
              G4ThreeVector(reticlePos_x,reticlePos_y,reticlePos_z),
              "reticle",reticle_log,world,false,0);

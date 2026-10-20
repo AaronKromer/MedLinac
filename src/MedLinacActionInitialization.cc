@@ -48,7 +48,7 @@ void MedLinacActionInitialization::Build() const
 {   
 SetUserAction(new MedLinacPrimaryGeneratorAction()); 
 
-//SetUserAction(new MedLinacRunAction());
+SetUserAction(new MedLinacRunAction());
 SetUserAction(new MedLinacTrackingAction());
 SetUserAction(new MedLinacEventAction());
 

@@ -23,9 +23,20 @@ include(${Geant4_USE_FILE})
 #----------------------------------------------------------------------------
 # Locate sources and headers for this project
 #
-include_directories(${PROJECT_SOURCE_DIR}/include
-                    ${Geant4_INCLUDE_DIR}
-                    /usr/local/share/doc/iAIDA/src)
+
+# Allow user to specify iAIDA include dir and library, or try to find them
+set(IAIDA_INCLUDE_DIR "/usr/local/share/doc/iAIDA/src" CACHE PATH "Path to iAIDA include directory")
+if(APPLE)
+  set(IAIDA_LIBRARY "/usr/local/lib/libiAIDA.dylib" CACHE FILEPATH "Path to iAIDA library")
+else()
+  set(IAIDA_LIBRARY "/usr/local/lib/libiAIDA.so" CACHE FILEPATH "Path to iAIDA library")
+endif()
+
+include_directories(
+  ${PROJECT_SOURCE_DIR}/include
+  ${Geant4_INCLUDE_DIR}
+  ${IAIDA_INCLUDE_DIR}
+)
 file(GLOB sources ${PROJECT_SOURCE_DIR}/src/*.cc)
 file(GLOB headers ${PROJECT_SOURCE_DIR}/include/*.hh)
 
@@ -33,8 +44,9 @@ file(GLOB headers ${PROJECT_SOURCE_DIR}/include/*.hh)
 # Add the executable, and link it to the Geant4 libraries
 #
 add_executable(MedLinac MedLinac.cc ${sources} ${headers})
-target_link_libraries(MedLinac ${Geant4_LIBRARIES} /usr/local/lib/libiAIDA.so )
+target_link_libraries(MedLinac ${Geant4_LIBRARIES} ${IAIDA_LIBRARY})
 target_compile_definitions(MedLinac PRIVATE G4ANALYSIS_USE)
+#target_compile_definitions(MedLinac PRIVATE G4VIS_USE)
 
 #----------------------------------------------------------------------------
 # Copy all scripts to the build directory, i.e. the directory in which we

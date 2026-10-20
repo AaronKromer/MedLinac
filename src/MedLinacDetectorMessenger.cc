@@ -56,6 +56,8 @@ MedLinacDetectorMessenger::MedLinacDetectorMessenger(
   Y1Dir = new G4UIdirectory("/Jaws/Y1/");
   Y2Dir = new G4UIdirectory("/Jaws/Y2/");
 
+  MedLinacDir = new G4UIdirectory("/Mode/");
+  MedLinacDir->SetGuidance("linac mode");
 
   JawX1PosCmd = new G4UIcmdWithADoubleAndUnit("/Jaws/X1/DistanceFromAxis",this);
   JawX1PosCmd->SetGuidance("Set jawsx1 position (negative)");
@@ -89,6 +91,13 @@ MedLinacDetectorMessenger::MedLinacDetectorMessenger(
   JawY2PosCmd->SetUnitCategory("Length");
   JawY2PosCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
 
+  PhantomDistCmd = new G4UIcmdWithADoubleAndUnit("/Phantom/distanceFromTarget",this);
+  PhantomDistCmd->SetGuidance("Set phantom distance from target  (cm)");
+  PhantomDistCmd->SetParameterName("phantomDist",false);
+  PhantomDistCmd->SetDefaultUnit( "cm" );
+  PhantomDistCmd->SetUnitCategory("Length");
+  PhantomDistCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
+
   PhantomDimCmd = new G4UIcmdWithADoubleAndUnit("/Phantom/dimension",this);
   PhantomDimCmd->SetGuidance("Set phantom dimension (cm)");
   PhantomDimCmd->SetParameterName("phantomDim",false);
@@ -114,8 +123,16 @@ MedLinacDetectorMessenger::MedLinacDetectorMessenger(
   UpdateCmd->SetGuidance("if you changed geometrical value(s).");
   UpdateCmd->AvailableForStates(G4State_Idle);
 
+  ElectronCmd = new G4UIcmdWithoutParameter("/Mode/electron",this);
+  ElectronCmd->SetGuidance("Electron Mode");
+  ElectronCmd->AvailableForStates(G4State_Idle);
 
+  PhotonCmd = new G4UIcmdWithoutParameter("/Mode/photon",this);
+  PhotonCmd->SetGuidance("Photon Mode");
+  PhotonCmd->AvailableForStates(G4State_Idle);
 }
+
+
 
 //****************************************************************************
 MedLinacDetectorMessenger::~MedLinacDetectorMessenger()
@@ -125,9 +142,13 @@ MedLinacDetectorMessenger::~MedLinacDetectorMessenger()
   delete JawY1PosCmd;
   delete JawY2PosCmd;
   delete PhantomDimCmd;
+  delete PhantomDistCmd;
   delete NVoxelsCmd;
   delete MaxStepCmd;
   delete UpdateCmd;
+
+  delete ElectronCmd;
+  delete PhotonCmd;
 
   delete MedLinacDir;
   
@@ -155,6 +176,15 @@ void MedLinacDetectorMessenger::SetNewValue(G4UIcommand* command,G4String newVal
 
   if( command == PhantomDimCmd )
    { MedLinacDetector->SetPhantomDim(PhantomDimCmd->GetNewDoubleValue(newValue));}
+   
+  if( command == PhantomDistCmd )
+   { MedLinacDetector->SetPhantomDist(PhantomDistCmd->GetNewDoubleValue(newValue));}
+
+  if( command == ElectronCmd )
+   { MedLinacDetector->SetMode("electron");}
+
+  if( command == PhotonCmd )
+   { MedLinacDetector->SetMode("photon");}
 
   if( command == NVoxelsCmd )
    { MedLinacDetector->SetNumberOfVoxels(NVoxelsCmd->GetNewIntValue(newValue));  }
@@ -164,6 +194,7 @@ void MedLinacDetectorMessenger::SetNewValue(G4UIcommand* command,G4String newVal
 
   if( command == UpdateCmd )
    { MedLinacDetector->UpdateGeometry(); }
+  
 
 }
 //****************************************************************************

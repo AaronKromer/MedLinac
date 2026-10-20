@@ -110,9 +110,9 @@ void MedLinacTargetAndFilterDecorator::ConstructTargetAndFilter(G4VPhysicalVolum
   a = 183.85*g/mole;
   G4Material* W = new G4Material(name="Tungsten"  , z=74., a, density)
 ;
-  density = 1.290*mg/cm3;
+  density = 1.277*mg/cm3;
   G4Material* Air = new G4Material(name="Air",density, ncomponents=2);
-  Air->AddElement(elN, fractionmass=70*perCent);
+  Air->AddElement(elN, fractionmass=87*perCent);
   Air->AddElement(elO, fractionmass=30*perCent);
 
   //    colors
@@ -175,14 +175,14 @@ void MedLinacTargetAndFilterDecorator::ConstructTargetAndFilter(G4VPhysicalVolum
 
   layer1_log = new G4LogicalVolume(layer1,Cu,"layer1_log",0,0,0);
 
-  G4double layer1Pos_z = 103.301*cm;
+  G4double layer1Pos_z = 108.351*cm;
   layer1_phys = new G4PVPlacement(rotateMatrix,
              G4ThreeVector(layerPos_x,layerPos_y,layer1Pos_z),
              "layer1",layer1_log,world,false,0);
 
    //-----------layer2-----------------------------
   G4double  layer2Rmax1 = 0.025*cm;
-  G4double  layer2Rmax2 = 0.050*cm;
+  G4double  layer2Rmax2 = 0.047*cm;
   G4double  layer2HightOfTheCone = 0.0065*cm;
   G4Cons* layer2 = new G4Cons("layer2",layerRmin1,layer2Rmax1,layerRmin2,
   			   layer2Rmax2,layer2HightOfTheCone,startAngleOfTheCone,
@@ -190,12 +190,12 @@ void MedLinacTargetAndFilterDecorator::ConstructTargetAndFilter(G4VPhysicalVolum
 
   layer2_log = new G4LogicalVolume(layer2,Cu,"layer2_log",0,0,0);
 
-  G4double layer2Pos_z = 103.2885*cm;
+  G4double layer2Pos_z = layer1Pos_z - layer1HightOfTheCone - layer2HightOfTheCone;
   layer2_phys = new G4PVPlacement(rotateMatrix,
              G4ThreeVector(layerPos_x,layerPos_y,layer2Pos_z),
              "layer2",layer2_log,world,false,0);
     //-----------layer3-----------------------------
-  G4double  layer3Rmax1 = 0.050*cm;
+  G4double  layer3Rmax1 = 0.047*cm;
   G4double  layer3Rmax2 = 0.075*cm;
   G4double  layer3HightOfTheCone = 0.0075*cm;
   G4Cons* layer3 = new G4Cons("layer3",layerRmin1,layer3Rmax1,layerRmin2,
@@ -204,7 +204,7 @@ void MedLinacTargetAndFilterDecorator::ConstructTargetAndFilter(G4VPhysicalVolum
 
   layer3_log = new G4LogicalVolume(layer3,Cu,"layer3_log",0,0,0);
 
-  G4double layer3Pos_z = 103.2745*cm;
+  G4double layer3Pos_z = layer2Pos_z - layer2HightOfTheCone - layer3HightOfTheCone;
   layer3_phys = new G4PVPlacement(rotateMatrix,
              G4ThreeVector(layerPos_x,layerPos_y,layer3Pos_z),
              "layer3",layer3_log,world,false,0);
@@ -219,13 +219,13 @@ void MedLinacTargetAndFilterDecorator::ConstructTargetAndFilter(G4VPhysicalVolum
 
   layer4_log = new G4LogicalVolume(layer4,Cu,"layer4_log",0,0,0);
 
-  G4double layer4Pos_z = 103.258*cm;
+  G4double layer4Pos_z = layer3Pos_z - layer3HightOfTheCone - layer4HightOfTheCone;
   layer4_phys = new G4PVPlacement(rotateMatrix,
              G4ThreeVector(layerPos_x,layerPos_y,layer4Pos_z),
              "layer4",layer4_log,world,false,0);
   //-----------layer5-----------------------------
   G4double  layer5Rmax1 = 0.100*cm;
-  G4double  layer5Rmax2 = 0.150*cm;
+  G4double  layer5Rmax2 = 0.147*cm;
   G4double  layer5HightOfTheCone = 0.022*cm;
   G4Cons* layer5 = new G4Cons("layer5",layerRmin1,layer5Rmax1,layerRmin2,
   			   layer5Rmax2,layer5HightOfTheCone,startAngleOfTheCone,
@@ -233,13 +233,13 @@ void MedLinacTargetAndFilterDecorator::ConstructTargetAndFilter(G4VPhysicalVolum
 
   layer5_log = new G4LogicalVolume(layer5,Cu,"layer5_log",0,0,0);
 
-  G4double layer5Pos_z = 103.227*cm;
+  G4double layer5Pos_z = layer4Pos_z - layer4HightOfTheCone - layer5HightOfTheCone;
   layer5_phys = new G4PVPlacement(rotateMatrix,
              G4ThreeVector(layerPos_x,layerPos_y,layer5Pos_z),
              "layer5",layer5_log,world,false,0);
 
    //-----------layer6-----------------------------
-  G4double  layer6Rmax1 = 0.150*cm;
+  G4double  layer6Rmax1 = 0.147*cm;
   G4double  layer6Rmax2 = 0.200*cm;
   G4double  layer6HightOfTheCone = 0.024*cm;
   G4Cons* layer6 = new G4Cons("layer6",layerRmin1,layer6Rmax1,layerRmin2,
@@ -248,14 +248,14 @@ void MedLinacTargetAndFilterDecorator::ConstructTargetAndFilter(G4VPhysicalVolum
 
   layer6_log = new G4LogicalVolume(layer6,Cu,"layer6_log",0,0,0);
 
-  G4double layer6Pos_z = 103.181*cm;
+  G4double layer6Pos_z = layer5Pos_z - layer5HightOfTheCone - layer6HightOfTheCone;
   layer6_phys = new G4PVPlacement(rotateMatrix,
              G4ThreeVector(layerPos_x,layerPos_y,layer6Pos_z),
              "layer6",layer6_log,world,false,0);
 
     //-----------layer7-----------------------------
   G4double  layer7Rmax1 = 0.200*cm;
-  G4double  layer7Rmax2 = 0.250*cm;
+  G4double  layer7Rmax2 = 0.247*cm;
   G4double  layer7HightOfTheCone = 0.023*cm;
   G4Cons* layer7 = new G4Cons("layer7",layerRmin1,layer7Rmax1,layerRmin2,
   			   layer7Rmax2,layer7HightOfTheCone,startAngleOfTheCone,
@@ -263,13 +263,13 @@ void MedLinacTargetAndFilterDecorator::ConstructTargetAndFilter(G4VPhysicalVolum
 
   layer7_log = new G4LogicalVolume(layer7,Cu,"layer7_log",0,0,0);
 
-  G4double layer7Pos_z = 103.134*cm;
+  G4double layer7Pos_z = layer6Pos_z - layer6HightOfTheCone - layer7HightOfTheCone;
   layer7_phys = new G4PVPlacement(rotateMatrix,
              G4ThreeVector(layerPos_x,layerPos_y,layer7Pos_z),
              "layer7",layer7_log,world,false,0);
 
  //-----------layer8-----------------------------
-  G4double  layer8Rmax1 = 0.250*cm;
+  G4double  layer8Rmax1 = 0.247*cm;
   G4double  layer8Rmax2 = 0.300*cm;
   G4double  layer8HightOfTheCone = 0.023*cm;
   G4Cons* layer8 = new G4Cons("layer8",layerRmin1,layer8Rmax1,layerRmin2,
@@ -278,14 +278,14 @@ void MedLinacTargetAndFilterDecorator::ConstructTargetAndFilter(G4VPhysicalVolum
 
   layer8_log = new G4LogicalVolume(layer8,Cu,"layer8_log",0,0,0);
 
-  G4double layer8Pos_z = 103.088*cm;
+  G4double layer8Pos_z = layer7Pos_z - layer7HightOfTheCone - layer8HightOfTheCone;
   layer8_phys = new G4PVPlacement(rotateMatrix,
              G4ThreeVector(layerPos_x,layerPos_y,layer8Pos_z),
              "layer8",layer8_log,world,false,0);
 
    //-----------layer9-----------------------------
   G4double  layer9Rmax1 = 0.300*cm;
-  G4double  layer9Rmax2 = 0.350*cm;
+  G4double  layer9Rmax2 = 0.347*cm;
   G4double  layer9HightOfTheCone = 0.0225*cm;
   G4Cons* layer9 = new G4Cons("layer9",layerRmin1,layer9Rmax1,layerRmin2,
   			   layer9Rmax2,layer9HightOfTheCone,startAngleOfTheCone,
@@ -293,13 +293,13 @@ void MedLinacTargetAndFilterDecorator::ConstructTargetAndFilter(G4VPhysicalVolum
 
   layer9_log = new G4LogicalVolume(layer9,Cu,"layer9_log",0,0,0);
 
-  G4double layer9Pos_z = 103.0425*cm;
+  G4double layer9Pos_z = layer8Pos_z - layer8HightOfTheCone - layer9HightOfTheCone;
   layer9_phys = new G4PVPlacement(rotateMatrix,
              G4ThreeVector(layerPos_x,layerPos_y,layer9Pos_z),
              "layer9",layer9_log,world,false,0);
 
   //-----------layer10-----------------------------
-  G4double  layer10Rmax1 = 0.350*cm;
+  G4double  layer10Rmax1 = 0.347*cm;
   G4double  layer10Rmax2 = 0.400*cm;
   G4double  layer10HightOfTheCone = 0.022*cm;
   G4Cons* layer10 = new G4Cons("layer10",layerRmin1,layer10Rmax1,layerRmin2,
@@ -308,13 +308,13 @@ void MedLinacTargetAndFilterDecorator::ConstructTargetAndFilter(G4VPhysicalVolum
 
   layer10_log = new G4LogicalVolume(layer10,Cu,"layer10_log",0,0,0);
 
-  G4double layer10Pos_z = 102.998*cm;
+  G4double layer10Pos_z = layer9Pos_z - layer9HightOfTheCone - layer10HightOfTheCone;
   layer10_phys = new G4PVPlacement(rotateMatrix,
              G4ThreeVector(layerPos_x,layerPos_y,layer10Pos_z),
              "layer10",layer10_log,world,false,0);
    //-----------layer11-----------------------------
   G4double  layer11Rmax1 = 0.400*cm;
-  G4double  layer11Rmax2 = 0.500*cm;
+  G4double  layer11Rmax2 = 0.487*cm;
   G4double  layer11HightOfTheCone = 0.0425*cm;
   G4Cons* layer11 = new G4Cons("layer11",layerRmin1,layer11Rmax1,layerRmin2,
   			   layer11Rmax2,layer11HightOfTheCone,startAngleOfTheCone,
@@ -322,13 +322,13 @@ void MedLinacTargetAndFilterDecorator::ConstructTargetAndFilter(G4VPhysicalVolum
 
   layer11_log = new G4LogicalVolume(layer11,Cu,"layer11_log",0,0,0);
 
-  G4double layer11Pos_z = 102.9335*cm;
+  G4double layer11Pos_z = layer10Pos_z - layer10HightOfTheCone - layer11HightOfTheCone;
   layer11_phys = new G4PVPlacement(rotateMatrix,
              G4ThreeVector(layerPos_x,layerPos_y,layer11Pos_z),
              "layer11",layer11_log,world,false,0);
 
   //-----------layer12-----------------------------
-  G4double  layer12Rmax1 = 0.500*cm;
+  G4double  layer12Rmax1 = 0.487*cm;
   G4double  layer12Rmax2 = 0.600*cm;
   G4double  layer12HightOfTheCone = 0.0395*cm;
   G4Cons* layer12 = new G4Cons("layer12",layerRmin1,layer12Rmax1,layerRmin2,
@@ -337,14 +337,14 @@ void MedLinacTargetAndFilterDecorator::ConstructTargetAndFilter(G4VPhysicalVolum
 
   layer12_log = new G4LogicalVolume(layer12,Cu,"layer12_log",0,0,0);
 
-  G4double layer12Pos_z = 102.8515*cm;
+  G4double layer12Pos_z = layer11Pos_z - layer11HightOfTheCone - layer12HightOfTheCone;
   layer12_phys = new G4PVPlacement(rotateMatrix,
              G4ThreeVector(layerPos_x,layerPos_y,layer12Pos_z),
              "layer12",layer12_log,world,false,0);
 
   //-----------layer13-----------------------------
   G4double  layer13Rmax1 = 0.600*cm;
-  G4double  layer13Rmax2 = 0.700*cm;
+  G4double  layer13Rmax2 = 0.770*cm;
   G4double  layer13HightOfTheCone = 0.038*cm;
   G4Cons* layer13 = new G4Cons("layer13",layerRmin1,layer13Rmax1,layerRmin2,
   			   layer13Rmax2,layer13HightOfTheCone,startAngleOfTheCone,
@@ -352,13 +352,13 @@ void MedLinacTargetAndFilterDecorator::ConstructTargetAndFilter(G4VPhysicalVolum
 
   layer13_log = new G4LogicalVolume(layer13,Cu,"layer13_log",0,0,0);
 
-  G4double layer13Pos_z = 102.774*cm;
+  G4double layer13Pos_z = layer12Pos_z - layer12HightOfTheCone - layer13HightOfTheCone;
   layer13_phys = new G4PVPlacement(rotateMatrix,
              G4ThreeVector(layerPos_x,layerPos_y,layer13Pos_z),
              "layer13",layer13_log,world,false,0);
  //-----------layer14-----------------------------
-  G4double  layer14Rmax1 = 0.700*cm;
-  G4double  layer14Rmax2 = 0.800*cm;
+  G4double  layer14Rmax1 = 0.770*cm;
+  G4double  layer14Rmax2 = 0.700*cm;
   G4double  layer14HightOfTheCone = 0.0335*cm;
   G4Cons* layer14 = new G4Cons("layer14",layerRmin1,layer14Rmax1,layerRmin2,
   			   layer14Rmax2,layer14HightOfTheCone,startAngleOfTheCone,
@@ -366,14 +366,14 @@ void MedLinacTargetAndFilterDecorator::ConstructTargetAndFilter(G4VPhysicalVolum
 
   layer14_log = new G4LogicalVolume(layer14,Cu,"layer14_log",0,0,0);
 
-  G4double layer14Pos_z = 102.7025*cm;
+  G4double layer14Pos_z = layer13Pos_z - layer13HightOfTheCone - layer14HightOfTheCone;
   layer14_phys = new G4PVPlacement(rotateMatrix,
              G4ThreeVector(layerPos_x,layerPos_y,layer14Pos_z),
              "layer14",layer14_log,world,false,0);
 
    //-----------layer15-----------------------------
-  G4double  layer15Rmax1 = 0.800*cm;
-  G4double  layer15Rmax2 = 0.900*cm;
+  G4double  layer15Rmax1 = 0.700*cm;
+  G4double  layer15Rmax2 = 0.770*cm;
   G4double  layer15HightOfTheCone = 0.0325*cm;
   G4Cons* layer15 = new G4Cons("layer15",layerRmin1,layer15Rmax1,layerRmin2,
   			   layer15Rmax2,layer15HightOfTheCone,startAngleOfTheCone,
@@ -381,12 +381,12 @@ void MedLinacTargetAndFilterDecorator::ConstructTargetAndFilter(G4VPhysicalVolum
 
   layer15_log = new G4LogicalVolume(layer15,Cu,"layer15_log",0,0,0);
 
-  G4double layer15Pos_z = 102.6365*cm;
+  G4double layer15Pos_z = layer14Pos_z - layer14HightOfTheCone - layer15HightOfTheCone;
   layer15_phys = new G4PVPlacement(rotateMatrix,
              G4ThreeVector(layerPos_x,layerPos_y,layer15Pos_z),
              "layer15",layer15_log,world,false,0);
   //-----------layer16-----------------------------
-  G4double  layer16Rmax1 = 0.900*cm;
+  G4double  layer16Rmax1 = 0.770*cm;
   G4double  layer16Rmax2 = 1.000*cm;
   G4double  layer16HightOfTheCone = 0.028*cm;
   G4Cons* layer16 = new G4Cons("layer16",layerRmin1,layer16Rmax1,layerRmin2,
@@ -395,7 +395,7 @@ void MedLinacTargetAndFilterDecorator::ConstructTargetAndFilter(G4VPhysicalVolum
 
   layer16_log = new G4LogicalVolume(layer16,Cu,"layer16_log",0,0,0);
 
-  G4double layer16Pos_z = 102.576*cm;
+  G4double layer16Pos_z = layer15Pos_z - layer15HightOfTheCone - layer16HightOfTheCone;
   layer16_phys = new G4PVPlacement(rotateMatrix,
              G4ThreeVector(layerPos_x,layerPos_y,layer16Pos_z),
              "layer16",layer16_log,world,false,0);
@@ -410,7 +410,7 @@ void MedLinacTargetAndFilterDecorator::ConstructTargetAndFilter(G4VPhysicalVolum
 
   layer17_log = new G4LogicalVolume(layer17,Cu,"layer17_log",0,0,0);
 
-  G4double layer17Pos_z = 102.5205*cm;
+  G4double layer17Pos_z = layer16Pos_z - layer16HightOfTheCone - layer17HightOfTheCone;
   layer17_phys = new G4PVPlacement(rotateMatrix,
              G4ThreeVector(layerPos_x,layerPos_y,layer17Pos_z),
              "layer17",layer17_log,world,false,0);
@@ -425,7 +425,7 @@ void MedLinacTargetAndFilterDecorator::ConstructTargetAndFilter(G4VPhysicalVolum
 
   layer18_log = new G4LogicalVolume(layer18,Cu,"layer18_log",0,0,0);
 
-  G4double layer18Pos_z = 102.474*cm;
+  G4double layer18Pos_z = layer17Pos_z - layer17HightOfTheCone - layer18HightOfTheCone;
   layer18_phys = new G4PVPlacement(rotateMatrix,
              G4ThreeVector(layerPos_x,layerPos_y,layer18Pos_z),
              "layer18",layer18_log,world,false,0);
@@ -442,7 +442,7 @@ void MedLinacTargetAndFilterDecorator::ConstructTargetAndFilter(G4VPhysicalVolum
 
   G4double layer19PosX = 0.*cm;
   G4double layer19PosY = 0.*cm;
-  G4double layer19PosZ = 102.415*cm;
+  G4double layer19PosZ = layer18Pos_z -0.59*cm;
 
   layer19_phys = new G4PVPlacement(0,
 					   G4ThreeVector(layer19PosX,layer19PosY,
@@ -479,7 +479,7 @@ void MedLinacTargetAndFilterDecorator::ConstructTargetAndFilter(G4VPhysicalVolum
 
   G4double layer20PosX = 0.*cm;
   G4double layer20PosY = 0.*cm;
-  G4double layer20PosZ = 102.4775*cm;
+  G4double layer20PosZ = layer19PosZ + 0.615*cm;
   layer20_phys = new G4PVPlacement(0,
 					   G4ThreeVector(layer20PosX,layer20PosY,
 							 layer20PosZ),"layer20",
@@ -487,7 +487,7 @@ void MedLinacTargetAndFilterDecorator::ConstructTargetAndFilter(G4VPhysicalVolum
 
   //-----------layer21-----------------------------
   G4double innerRadiusOfTheLayer21 = 1.325*cm;
-  G4double outerRadiusOfTheLayer21 = 1.500*cm;
+  G4double outerRadiusOfTheLayer21 = 1.487*cm;
   G4double hightOfTheLayer21 = 0.0625*cm;
   G4double startAngleOfTheLayer21 = 0.*deg;
   G4double spanningAngleOfTheLayer21 = 360.*deg;
@@ -498,11 +498,11 @@ void MedLinacTargetAndFilterDecorator::ConstructTargetAndFilter(G4VPhysicalVolum
 
   G4double layer21PosX = 0.*cm;
   G4double layer21PosY = 0.*cm;
-  G4double layer21PosZ = 102.4375*cm;
+  G4double layer21PosZ = layer20PosZ - 0.4*cm;
 
   layer21_phys = new G4PVPlacement(0,
 					   G4ThreeVector(layer21PosX,layer21PosY,
-							 layer21PosZ),"layer19",
+							 layer21PosZ),"layer21",
 					   layer21_log,world,false,0);
 
   //    Visualization attributes 

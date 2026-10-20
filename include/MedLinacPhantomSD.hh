@@ -62,9 +62,17 @@ public:
   G4int GetNumberOfPhantomVoxels()  {return numberOfPhantomVoxels;};
 
   private:
+    std::mutex mtx;
     G4double phantomDimension;
   G4int numberOfPhantomVoxels;
   MedLinacPhantomMessenger* phantomMessenger;
+
+  // TEMPORARY diagnostics for the central-bin spike investigation
+  G4int fDebugTotalHits;
+  G4int fDebugCentralZHits;
+  G4int fDebugCentralXHits;
+  G4int fDebugCentralYHits;
+  G4int fDebugPrintedSamples;
 };
 #endif
 

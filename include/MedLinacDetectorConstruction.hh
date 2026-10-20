@@ -33,6 +33,7 @@
 #define  MedLinacDetectorConstruction_H 1
 #include "MedLinacDetectorMessenger.hh"
 
+
 #include "G4VUserDetectorConstruction.hh"
 #include "globals.hh"
 #include "G4VisAttributes.hh"
@@ -44,6 +45,7 @@ class G4VPhysicalVolume;
 class MedLinacDetectorMessenger;
 class MedLinacVGeometryComponent;
 class MedLinacPhantomSD;
+class MedLinacDummySD;
 class MedLinacPhantomROGeometry;
 class MedLinacVoxelParameterisation;
 class MedLinacDecorator;
@@ -63,6 +65,8 @@ public:
   void SetJawY1Pos_y (G4double);
   void SetJawY2Pos_y (G4double);
   void SetPhantomDim (G4double);
+  void SetPhantomDist (G4double);
+  void SetMode (G4String);
   void SetNumberOfVoxels (G4int);
   void SetMaxStep (G4double);
 
@@ -70,7 +74,7 @@ public:
   
   void UpdateGeometry();
   void ConstructVolume();
-  void ConstructSensitiveDetector();
+  void ConstructSDandField();
   //void SetPhantomMaterial(G4String);
 
   const G4int   GetNumVoxelX()  {return  numberOfVoxelsAlongX;}
@@ -93,6 +97,7 @@ public:
   G4double GetJawY1Pos_y()  {return fieldY1;}; 
   G4double GetJawY2Pos_y()  {return fieldY2;}; 
   G4double GetPhantomDim()  {return phantomDim;};
+  G4double GetPhantomDist()  {return phantomDist;};
   G4int GetNumberOfVoxels()  {return numberOfVoxels;};
   G4double GetMaxStep()  {return maxStep;};
 
@@ -103,21 +108,24 @@ public:
   G4double  fieldY1;
   G4double  fieldY2;
   G4double  phantomDim;
+  G4double  phantomDist;
   G4int  numberOfVoxels;
   G4double  maxStep;
+  G4bool electronMode=false;
 
   G4VPhysicalVolume* ConstructGeom();
 
   MedLinacVGeometryComponent* pHead;
   MedLinacDetectorMessenger* detectorMessenger; 
-  MedLinacDecorator* decorator;
-  MedLinacDecorator* decorator1;
+  MedLinacDecorator* filterDecorator;
+  MedLinacDecorator* MLCDecorator;
   MedLinacDetectorConstruction(G4String);
 
   static MedLinacDetectorConstruction* instance;
 
   MedLinacPhantomSD* phantomSD;//pointer to sensitive detector
   MedLinacPhantomROGeometry* phantomROGeometry;//pointer to ROGeometry
+  MedLinacDummySD *dummySD;
 
   G4double phantomDim_x; //Phantom XDimension
   G4double phantomDim_y; //Phantom YDimension

@@ -31,6 +31,7 @@
 #ifndef MedLinacRunAction_h
 #define MedLinacRunAction_h 1
 
+#include "MedLinacEventAction.hh"
 #include "G4UserRunAction.hh"
 #include "G4RunManager.hh"
 #include "globals.hh"
@@ -48,9 +49,9 @@ class MedLinacRunAction : public G4UserRunAction
    ~MedLinacRunAction();
 
   public:
+    virtual G4Run* GenerateRun() override;
     void BeginOfRunAction(const G4Run* aRun);
     void EndOfRunAction(const G4Run* aRun);
-
 };
 
 //********************************************************************

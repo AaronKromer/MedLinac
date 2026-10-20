@@ -34,12 +34,20 @@
 
 #include "G4UserEventAction.hh"
 #include "globals.hh"
+#include <vector>
 
 //class G4Event;
 //class MedLinacDetectorConstruction; 
 //class MedLinacAnalysisManager;
 
 //*********************************************************************
+struct MedLinacHit {
+  float x;
+  float y;
+  float z;
+  double energyDep;
+};
+
 
 class MedLinacEventAction : public G4UserEventAction
 {
@@ -50,8 +58,14 @@ class MedLinacEventAction : public G4UserEventAction
   public:
     void BeginOfEventAction(const G4Event*);
     void EndOfEventAction(const G4Event*);
+    void AddHit(const MedLinacHit& h);
+    void ClearHits();
+    static G4bool AnalyzeHit(const MedLinacHit& hit, G4bool fillHistograms = false);
+    const std::vector<MedLinacHit>& GetHits() const;
+    
 
 private:
+  std::vector<MedLinacHit> hitsCollection; 
   G4String drawFlag; //Visualisation flag
   };
 

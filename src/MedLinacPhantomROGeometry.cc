@@ -30,7 +30,6 @@
 //
 #include <G4SystemOfUnits.hh>
 #include "MedLinacPhantomROGeometry.hh"
-#include "MedLinacDummySD.hh"
 
 #include "G4LogicalVolume.hh"
 #include "G4VPhysicalVolume.hh"
@@ -187,8 +186,8 @@ G4VPhysicalVolume* MedLinacPhantomROGeometry::Build()
 							      NumberOfVoxelsAlongZ,
 							      voxelXThickness);
 
-  MedLinacDummySD *dummySD = new  MedLinacDummySD;
-  ROPhantomYDivisionLog->SetSensitiveDetector(dummySD);
+  //MedLinacDummySD *dummySD = new  MedLinacDummySD;
+  //ROPhantomYDivisionLog->SetSensitiveDetector(dummySD);
 
   return ROWorldPhys;
 }

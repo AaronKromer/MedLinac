@@ -37,6 +37,7 @@
 #include "globals.hh"
 #include "G4SDManager.hh"
 #include "G4UImessenger.hh"
+#include "G4UIExecutive.hh"
 #include "Randomize.hh" 
 
 
@@ -51,7 +52,12 @@
 #include "MedLinacRunAction.hh"
 #include "MedLinacTrackingAction.hh"
 #include "G4SDManager.hh"
+#include "G4Timer.hh"
 #include "G4RunManagerFactory.hh"
+
+#ifdef G4ANALYSIS_USE
+#include "MedLinacAnalysisManager.hh"
+#endif
 
 #ifdef G4UI_USE_XM
 #include "G4UIXm.hh"
@@ -65,14 +71,30 @@ int main(int argc ,char ** argv)
 {
 
 //choose the Random engine
-  CLHEP::HepRandom::setTheEngine(new CLHEP::RanecuEngine);
-  G4int seed = 0;
+  CLHEP::HepRandom::setTheEngine(new CLHEP::MixMaxRng);
+  G4int seed = time(NULL) + getpid();
   CLHEP::HepRandom :: setTheSeed(seed);
-
+  G4Timer* eventTimer = new G4Timer;
+  eventTimer->Start();
  // Construct the default run manager
   //G4RunManager* runManager = new G4RunManager;
+  G4int nThreads = 1;
   auto* runManager = G4RunManagerFactory::CreateRunManager();
-  runManager->SetNumberOfThreads(3);
+  if (argc > 2)
+  {
+    nThreads = G4UIcommand::ConvertToInt(argv[2]);
+    if (nThreads < 0) {
+      G4cerr << "Number of threads should be non-negative. Using single thread."
+             << G4endl;
+      nThreads = 1;
+    }
+    if (nThreads == 0) {
+      nThreads = G4Threading::G4GetNumberOfCores();
+      G4cout << "Auto-threading: using " << nThreads 
+           << " threads (all available cores)." << G4endl;
+    }
+  }
+  runManager->SetNumberOfThreads(nThreads);
   G4String sensitiveDetectorName = "Phantom";
   MedLinacDetectorConstruction* pDetectorConstruction = 
 MedLinacDetectorConstruction::GetInstance(sensitiveDetectorName);
@@ -102,14 +124,14 @@ MedLinacDetectorConstruction::GetInstance(sensitiveDetectorName);
 	 << G4endl;
 #endif
   
+  G4UIExecutive* ui = nullptr;
+  if (argc == 1) // Define UI session for interactive mode.
+  {
+    ui = new G4UIExecutive(argc, argv, "Qt");
+  }
 
 
 
- G4UIsession* session = 0;
-  if (argc == 1)   // Define UI session for interactive mode.
-    {
-      session = new G4UIterminal();
-    }
 
   // set mandatory user action class
   
@@ -130,23 +152,30 @@ MedLinacDetectorConstruction::GetInstance(sensitiveDetectorName);
   //runManager->Initialize();
 
   // get the pointer to the UI manager
-  G4UImanager* UI = G4UImanager::GetUIpointer();
+  G4UImanager* UImanager = G4UImanager::GetUIpointer();
+
   
- if (session)   // Define UI session for interactive mode.
+ if (ui)   // Define UI session for interactive mode.
     { 
       G4cout<<" UI session starts ..."<< G4endl; 
-       UI -> ApplyCommand("/control/execute macro.mac");    
-       session->SessionStart();
-       delete session;
+      UImanager -> ApplyCommand("/control/execute vis.mac");
+      ui->SessionStart();
+      delete ui;    
     }
 
   else           // Batch mode
     { 
       G4String command = "/control/execute ";
       G4String fileName = argv[1];
-      UI->ApplyCommand(command+fileName);
+      UImanager ->ApplyCommand(command+fileName);
     }  
 
+
+  // Commit/close the analysis output once, after ALL /run/beamOn calls in
+  // this job (whether run interactively or via the batch macro) have finished.
+#ifdef G4ANALYSIS_USE
+  MedLinacAnalysisManager::getInstance()->finish();
+#endif
 
   //job termination
 
@@ -154,8 +183,15 @@ MedLinacDetectorConstruction::GetInstance(sensitiveDetectorName);
  delete visManager;
 #endif
 
- delete runManager;
+ 
 
+ eventTimer->Stop();
+ G4cout << "Total execution time: " << eventTimer->GetRealElapsed() << " s" << G4endl;
+ G4cout << "Number of threads: " << nThreads << G4endl;
+
+
+ delete eventTimer;
+ delete runManager;
  return 0;
 }
 

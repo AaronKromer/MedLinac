@@ -28,13 +28,17 @@
 //
 // Code developed by: M. Piergentili
 //
- 
+#include <G4SystemOfUnits.hh>
+
 #include "MedLinacEventAction.hh"
 #include "MedLinacPhantomHit.hh"
 #include "MedLinacPhantomSD.hh"
 #include "MedLinacDetectorConstruction.hh"
+#include "MedLinacRunAction.hh"
 #include "G4Event.hh"
 #include "G4EventManager.hh"
+#include "G4RunManager.hh"
+#include "MedLinacRun.hh"
 #include "G4HCofThisEvent.hh"
 #include "G4VHitsCollection.hh"
 #include "G4TrajectoryContainer.hh"
@@ -63,13 +67,29 @@ MedLinacEventAction::~MedLinacEventAction()
  
 void MedLinacEventAction::BeginOfEventAction(const G4Event*)
 {
+  // clear per-event container (member) so each event starts empty
+  ClearHits();
+
+}
+void MedLinacEventAction::ClearHits()
+{
+  hitsCollection.clear();
+}
+
+void MedLinacEventAction::AddHit(const MedLinacHit& h)
+{
+  hitsCollection.push_back(h);
+}
+
+const std::vector<MedLinacHit>& MedLinacEventAction::GetHits() const
+{
+  return hitsCollection;
 }
 
  
 void MedLinacEventAction::EndOfEventAction(const G4Event* evt)
 {  
  // extract the trajectories and draw them ...
-
   if (G4VVisManager::GetConcreteInstance())
     {
       G4TrajectoryContainer * trajectoryContainer = evt->GetTrajectoryContainer();
@@ -87,8 +107,138 @@ void MedLinacEventAction::EndOfEventAction(const G4Event* evt)
 	    trj->DrawTrajectory();	     	     
 	}
     }
+  // get current run and cast to MedLinacRun, then append event hits into the worker run
+  G4Run* run = const_cast<G4Run*>(G4RunManager::GetRunManager()->GetCurrentRun());
+  MedLinacRun* mrun = static_cast<MedLinacRun*>(run);
+  if (mrun) {
+    mrun->AddHits(hitsCollection);
+  }
+  hitsCollection.clear();
+
  }
 
 
+G4bool MedLinacEventAction::AnalyzeHit(const MedLinacHit& hit, G4bool fillHistograms)
+{ 
+  float x = hit.x;
+  float y = hit.y;
+  float z = hit.z;
+  G4double energyDep = hit.energyDep;
+  G4bool hitUsed = false;
+  MedLinacAnalysisManager* analysis = nullptr;
+  if (fillHistograms) {
+    analysis = MedLinacAnalysisManager::getInstance();
+  }
+//**** PDD in isocenter (Y and X Thickness = 5. mm) ***********
 
+  const G4bool applyChamberCuts = true;
+
+  if (!applyChamberCuts || (x<=2.5*mm && x>= -2.5*mm))
+  {
+    if (!applyChamberCuts || (y<=2.5*mm && y>= -2.5*mm))
+    {
+      if (fillHistograms) {
+        analysis->FillHistogram1WithEnergy(z,energyDep/MeV);
+      }
+      hitUsed = true;
+    }
+  }
+
+//***** flatness  along x ***** Depth=build-up (15 mm)*************************
+  if (z<=287.5*mm && z>=282.5*mm)
+  {
+    if (!applyChamberCuts || (y<=2.5*mm && y>= -2.5*mm))
+    {
+      if (fillHistograms) {
+        analysis->FillHistogram2WithEnergy(x,energyDep/MeV);
+      }
+      hitUsed = true;
+    }
+  }
+
+//***** flatness  along x ***** Depth=50mm 5*********************************
+  if (z<=252.5*mm && z>= 247.5*mm)
+  {
+    if (!applyChamberCuts || (y<=2.5*mm && y>= -2.5*mm))
+    {
+      if (fillHistograms) {
+        analysis->FillHistogram3WithEnergy(x,energyDep/MeV);
+      }
+      hitUsed = true;
+    }
+  }
+
+//***** flatness  along x ***** Depth=100 mm********************************
+  if (z<=202.5*mm && z>= 197.5*mm)
+  {
+    if (!applyChamberCuts || (y<=2.5*mm && y>= -2.5*mm))
+    {
+      if (fillHistograms) {
+        analysis->FillHistogram4WithEnergy(x,energyDep/MeV);
+      }
+      hitUsed = true;
+    }
+  }
+
+//***** flatness  along x ***** Depth=200 mm********************************
+  if (z<=52.5*mm && z>= 47.5*mm)
+  {
+    if (!applyChamberCuts || (y<=2.5*mm && y>= -2.5*mm))
+    {
+      if (fillHistograms) {
+        analysis->FillHistogram5WithEnergy(x,energyDep/MeV);
+      }
+      hitUsed = true;
+    }
+  }
+
+//***** flatness along y ***** Depth=build-up (15 mm) ***********************
+  if (z<=287.5*mm && z>=282.5*mm)
+  {
+    if (!applyChamberCuts || (x<=2.5*mm && x>= -2.5*mm))
+    {
+      if (fillHistograms) {
+        analysis->FillHistogram6WithEnergy(y,energyDep/MeV);
+      }
+        hitUsed = true;
+    }
+  }
+
+//***** flatness along y ***** Depth=50 mm ***********************************
+  if (z<=252.5*mm && z>= 247.5*mm)
+  {
+    if (!applyChamberCuts || (x<=2.5*mm && x>= -2.5*mm))
+    {
+      if (fillHistograms) {
+        analysis->FillHistogram7WithEnergy(y,energyDep/MeV);
+      }
+      hitUsed = true;
+    }
+  }
+
+//***** flatness along y ***** Depth=100 mm *********************************
+  if (z<=202.5*mm && z>= 197.5*mm)
+  {
+    if (!applyChamberCuts || (x<=2.5*mm && x>= -2.5*mm))
+    {
+      if (fillHistograms) {
+        analysis->FillHistogram8WithEnergy(y,energyDep/MeV);
+      }
+      hitUsed = true;
+    }
+  }
+
+//***** flatness along y ***** Depth=200 mm *********************************
+  if (z<=52.5*mm && z>= 47.5*mm)
+  {
+    if (!applyChamberCuts || (x<=2.5*mm && x>= -2.5*mm))
+    {
+      if (fillHistograms) {
+        analysis->FillHistogram9WithEnergy(y,energyDep/MeV);
+      }
+      hitUsed = true;
+    }
+  }
+  return hitUsed ;
+}
 

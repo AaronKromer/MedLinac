@@ -81,7 +81,7 @@ void MedLinacPhantomMessenger::SetNewValue(G4UIcommand* command,G4String newValu
    { MedLinacP->SetPhantomDimension(PhantomDimCmd->GetNewDoubleValue(newValue));}
 
   if( command == NVoxelsCmd )
-   { MedLinacP->SetNumberOfPhantomVoxels(NVoxelsCmd->GetNewIntValue(newValue));  }
+   { MedLinacP->SetNumberOfPhantomVoxels(NVoxelsCmd->GetNewIntValue(newValue));}
 
 }
 //****************************************************************************

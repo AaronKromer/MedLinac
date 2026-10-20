@@ -5,15 +5,16 @@
 /run/verbose 2
 
 
-/Phantom/dimension 15. cm
-/Phantom/Nvoxels 150
+/Phantom/dimension 60. cm
+/Phantom/distanceFromTarget 100. cm
+/Phantom/Nvoxels 600
 /Phantom/maxStep 0.2 mm
 
 /run/initialize
 /tracking/storeTrajectory 1
 
-/PhantomSD/dimension 15. cm
-/PhantomSD/Nvoxels 150
+/PhantomSD/dimension 60. cm
+/PhantomSD/Nvoxels 600
 
 #/run/initialize
 #/tracking/storeTrajectory 1
@@ -50,27 +51,27 @@
 /MLC/leaf_selection  a14
 /MLC/position 0. cm
 /MLC/leaf_selection  a15
-/MLC/position 0. cm
+/MLC/position 14.9 cm
 /MLC/leaf_selection  a16
-/MLC/position 0. cm
+/MLC/position 14.9 cm
 /MLC/leaf_selection  a17
-/MLC/position 2.4 cm
+/MLC/position 14.9 cm
 /MLC/leaf_selection  a18
-/MLC/position 2.7 cm
+/MLC/position 14.9 cm
 /MLC/leaf_selection  a19
-/MLC/position 3.5 cm
+/MLC/position 14.9 cm
 /MLC/leaf_selection  a20
-/MLC/position 4.0 cm
+/MLC/position 14.9 cm
 /MLC/leaf_selection  a21
-/MLC/position 4.6 cm
+/MLC/position 14.9 cm
 /MLC/leaf_selection  a22
-/MLC/position 5.0 cm
+/MLC/position 14.9 cm
 /MLC/leaf_selection  a23
-/MLC/position 5.8 cm
+/MLC/position 14.9 cm
 /MLC/leaf_selection  a24
-/MLC/position 6.0 cm
+/MLC/position 14.9 cm
 /MLC/leaf_selection  a25
-/MLC/position 5.6 cm
+/MLC/position 14.9 cm
 /MLC/leaf_selection  a26
 /MLC/position 0. cm
 /MLC/leaf_selection  a27
@@ -132,27 +133,27 @@
 /MLC/leaf_selection  b14
 /MLC/position 0. cm
 /MLC/leaf_selection  b15
-/MLC/position 0. cm
+/MLC/position 14.9 cm
 /MLC/leaf_selection  b16
-/MLC/position 0. cm
+/MLC/position 14.9 cm
 /MLC/leaf_selection  b17
-/MLC/position 2.3 cm
+/MLC/position 14.9 cm
 /MLC/leaf_selection  b18
-/MLC/position 2.8 cm
+/MLC/position 14.9 cm
 /MLC/leaf_selection  b19
-/MLC/position 3.5 cm
+/MLC/position 14.9 cm
 /MLC/leaf_selection  b20
-/MLC/position 4.4 cm
+/MLC/position 14.9 cm
 /MLC/leaf_selection  b21
-/MLC/position 4.7 cm
+/MLC/position 14.9 cm
 /MLC/leaf_selection  b22
-/MLC/position 5.4 cm
+/MLC/position 14.9 cm
 /MLC/leaf_selection  b23
-/MLC/position 5.7 cm
+/MLC/position 14.9 cm
 /MLC/leaf_selection  b24
-/MLC/position 5.8 cm
+/MLC/position 14.9 cm
 /MLC/leaf_selection  b25
-/MLC/position 5.4 cm
+/MLC/position 14.9 cm
 /MLC/leaf_selection  b26
 /MLC/position 0. cm
 /MLC/leaf_selection  b27
@@ -186,12 +187,13 @@
 
 
 
-/Jaws/X1/DistanceFromAxis -4.2 cm
-/Jaws/X2/DistanceFromAxis 5.2 cm
-/Jaws/Y1/DistanceFromAxis -6.6 cm
-/Jaws/Y2/DistanceFromAxis 6.8 cm
+/Jaws/X1/DistanceFromAxis -5 cm
+/Jaws/X2/DistanceFromAxis 5 cm
+/Jaws/Y1/DistanceFromAxis -5 cm
+/Jaws/Y2/DistanceFromAxis 5 cm
 /Jaws/update
+/run/initialize
 
 /energy 6.0 MeV
 /sourceType 0.127 MeV
-/run/beamOn 10
+/run/beamOn 40000

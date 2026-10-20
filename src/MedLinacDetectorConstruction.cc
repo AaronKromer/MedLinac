@@ -39,6 +39,10 @@
 #include "MedLinacHead.hh"
 #include "MedLinacDecorator.hh"
 #include "MedLinacTargetAndFilterDecorator.hh"
+#include "MedLinacDummySD.hh"
+#include "MedLinacDummySD.hh"
+#include "MedLinacNestedPhantomParameterisation.hh"
+#include "MedLinacElectronFoilsDecorator.hh"
 #include "MedLinacMLCDecorator.hh"
 #include "G4CSGSolid.hh"
 #include "G4RotationMatrix.hh"
@@ -116,8 +120,13 @@ MedLinacDetectorConstruction::MedLinacDetectorConstruction(G4String SDName)
 
   detectorMessenger = new MedLinacDetectorMessenger(this);
   pHead = new MedLinacHead();
-  decorator = new MedLinacTargetAndFilterDecorator(pHead);
-  decorator1 = new MedLinacMLCDecorator(pHead);
+  MLCDecorator = new MedLinacMLCDecorator(pHead);
+  if (electronMode){
+    filterDecorator = new MedLinacElectronFoilsDecorator(pHead);
+  }
+  else{
+    filterDecorator = new MedLinacTargetAndFilterDecorator(pHead);
+  }
   ComputeDimVoxel();
 
 
@@ -139,8 +148,8 @@ MedLinacDetectorConstruction::~MedLinacDetectorConstruction()
 {
   delete detectorMessenger;
   delete pHead;
-  delete decorator;
-  delete decorator1;
+  delete filterDecorator;
+  delete MLCDecorator;
   }
 
 G4VPhysicalVolume* MedLinacDetectorConstruction::Construct()
@@ -211,20 +220,20 @@ G4VPhysicalVolume* MedLinacDetectorConstruction::ConstructGeom ()
   //----1Y------------------------
 
   G4double thetaY1 = std::atan(-fieldY1/(100.*cm));// in rad
-  G4double JawY1Pos_y = -((3.9*cm+28.*cm)*std::sin(thetaY1)+5.*cm*std::cos(thetaY1));
-  G4double JawY1Pos_z =115.*cm-((3.9*cm+28.*cm)*std::cos(thetaY1))+5.*cm*std::sin(thetaY1);
+  G4double JawY1Pos_y = -((4.1*cm+28.*cm)*std::sin(thetaY1)+5.62*cm*std::cos(thetaY1));
+  G4double JawY1Pos_z =115.*cm-((4.1*cm+28.*cm)*std::cos(thetaY1))+5.62*cm*std::sin(thetaY1);
   //----2Y-------------------------
   G4double thetaY2 = std::atan(fieldY2/(100.*cm)); // in rad
-  G4double JawY2Pos_y = (3.9*cm+28.*cm)*std::sin(thetaY2)+5.*cm*std::cos(thetaY2);
-  G4double JawY2Pos_z = 115.*cm-(3.9*cm+28.*cm)*std::cos(thetaY2)+5.*cm*std::sin(thetaY2);
+  G4double JawY2Pos_y = (4.1*cm+28.*cm)*std::sin(thetaY2)+5.62*cm*std::cos(thetaY2);
+  G4double JawY2Pos_z = 115.*cm-(4.1*cm+28.*cm)*std::cos(thetaY2)+5.62*cm*std::sin(thetaY2);
   //----1X-------------------------
   G4double thetaX1 = std::atan(-fieldX1/(100.*cm));
-  G4double JawX1Pos_x = -((36.7*cm+3.9*cm)*std::sin(thetaX1)+5.*cm*std::cos(thetaX1));
-  G4double JawX1Pos_z =115.*cm-(36.7*cm+3.9*cm)*std::cos(thetaX1)+5.*cm*std::sin(thetaX1);
+  G4double JawX1Pos_x = -((37.9*cm+4.1*cm)*std::sin(thetaX1)+9.61*cm*std::cos(thetaX1));
+  G4double JawX1Pos_z =115.*cm-(37.9*cm+4.1*cm)*std::cos(thetaX1)+9.61*cm*std::sin(thetaX1);
    //----2X-------------------------
   G4double thetaX2 = std::atan(fieldX2/(100.*cm));
-  G4double JawX2Pos_x = (36.7*cm+3.9*cm)*std::sin(thetaX2)+5.*cm*std::cos(thetaX2);
-  G4double JawX2Pos_z = 115.*cm-(36.7*cm+3.9*cm)*std::cos(thetaX2)+5.*cm*std::sin(thetaX2);
+  G4double JawX2Pos_x = (37.9*cm+4.1*cm)*std::sin(thetaX2)+9.61*cm*std::cos(thetaX2);
+  G4double JawX2Pos_z = 115.*cm-(37.9*cm+4.1*cm)*std::cos(thetaX2)+9.61*cm*std::sin(thetaX2);
   //---------rotation jaw1Y--------
 
   G4RotationMatrix* rotatejaw1Y=new G4RotationMatrix();
@@ -270,7 +279,7 @@ G4VPhysicalVolume* MedLinacDetectorConstruction::ConstructGeom ()
 
   G4double vacudim_x = 9.*cm;
   G4double vacudim_y = 9.*cm;
-  G4double vacudim_z = 8.755*cm;
+  G4double vacudim_z = 12.755*cm;
   G4Box* vacuumBlock_box = new G4Box("vacuumBlock_box",vacudim_x, vacudim_y,vacudim_z);
   vacuumBlock_log = new G4LogicalVolume(vacuumBlock_box,Vacuum,"vacuumBlock_log",0,0,0);
   G4double vacublockPos_x = 0.0*m;
@@ -281,9 +290,9 @@ G4VPhysicalVolume* MedLinacDetectorConstruction::ConstructGeom ()
 
   //----------------Jaw Y1 collimator---------------
 
-  G4double JawY1Dim_x = 10.0*cm;
-  G4double JawY1Dim_y = 5.0*cm;
-  G4double JawY1Dim_z = 3.9*cm;
+  G4double JawY1Dim_x = 9.40*cm;
+  G4double JawY1Dim_y = 5.62*cm;
+  G4double JawY1Dim_z = 3.98*cm;
   G4Box* JawY1 = new G4Box("JawY1",JawY1Dim_x,
                                   JawY1Dim_y,JawY1Dim_z);
   JawY1_log = new G4LogicalVolume(JawY1,
@@ -300,9 +309,9 @@ G4VPhysicalVolume* MedLinacDetectorConstruction::ConstructGeom ()
 
   //----------------Jaw Y2 collimator---------------
 
-  G4double JawY2Dim_x = 10.0*cm;
-  G4double JawY2Dim_y = 5.0*cm;
-  G4double JawY2Dim_z = 3.9*cm;
+  G4double JawY2Dim_x = 9.23*cm;
+  G4double JawY2Dim_y = 5.62*cm;
+  G4double JawY2Dim_z = 3.68*cm;
   G4Box* JawY2 = new G4Box("JawY2",JawY2Dim_x,
                                   JawY2Dim_y,JawY2Dim_z);
   JawY2_log = new G4LogicalVolume(JawY2,
@@ -316,10 +325,10 @@ G4VPhysicalVolume* MedLinacDetectorConstruction::ConstructGeom ()
 
 
  //----------------Jaw X1 collimator---------------
-
-  G4double JawX1Dim_x = 5.0*cm;
-  G4double JawX1Dim_y = 10.0*cm;
-  G4double JawX1Dim_z = 3.9*cm;
+  // needs to be changed to a trap?
+  G4double JawX1Dim_x = 8.61*cm;
+  G4double JawX1Dim_y = 11.18*cm;
+  G4double JawX1Dim_z = 4.28*cm;
   G4Box* JawX1 = new G4Box("JawX1",JawX1Dim_x,
                                  JawX1Dim_y,JawX1Dim_z);
   JawX1_log = new G4LogicalVolume(JawX1,
@@ -335,13 +344,13 @@ G4VPhysicalVolume* MedLinacDetectorConstruction::ConstructGeom ()
 
   //----------------Jaw X2 collimator---------------
 
-  G4double JawX2Dim_x = 5.0*cm;
-  G4double JawX2Dim_y = 10.0*cm;
-  G4double JawX2Dim_z = 3.9*cm;
+  G4double JawX2Dim_x = 8.91*cm;
+  G4double JawX2Dim_y = 13.92*cm;
+  G4double JawX2Dim_z = 1.88*cm;
   G4Box* JawX2 = new G4Box("JawX2",JawX2Dim_x,
                                   JawX2Dim_y,JawX2Dim_z);
   JawX2_log = new G4LogicalVolume(JawX2,
-                                             W,"JawX1_log",0,0,0);
+                                             W,"JawX2_log",0,0,0);
   //G4double JawX2Pos_x = fieldX2;
   G4double JawX2Pos_y = 0.0*cm;
   //G4double JawX2Pos_z = 54.2*cm;
@@ -350,29 +359,83 @@ G4VPhysicalVolume* MedLinacDetectorConstruction::ConstructGeom ()
              "JawX2",JawX2_log,experimentalHall_phys,false,0);
 
   //----------------Phantom---------
-  //phantomDim_x = 15.*cm;
-  //phantomDim_y = 15.*cm;
-  //phantomDim_z = 15.*cm;
   phantomDim_x = phantomDim;                                                                                                             
   phantomDim_y = phantomDim;                                                                                                             
   phantomDim_z = phantomDim; 
+  G4ThreeVector phantomSize = G4ThreeVector(phantomDim, phantomDim, phantomDim);
 
-  G4Box* Phantom = new G4Box("Phantom",phantomDim_x,
-                                  phantomDim_y,phantomDim_z);
-  Phantom_log = new G4LogicalVolume(Phantom,
-                                             H2O,"Phantom_log",0,0,0);
   G4double PhantomPos_x = 0.0*m;
   G4double PhantomPos_y = 0.0*m;
   G4double PhantomPos_z = 0.0*cm;
-  Phantom_phys = new G4PVPlacement(0,
-             G4ThreeVector(PhantomPos_x,PhantomPos_y,PhantomPos_z),
-             "Phantom_phys",Phantom_log,experimentalHall_phys,false,0);
 
   numberOfVoxelsAlongX=numberOfVoxels;
   numberOfVoxelsAlongY=numberOfVoxels;
   numberOfVoxelsAlongZ=numberOfVoxels;
 
-  PrintParameters();   
+  PrintParameters(); 
+  //................................
+  // Mother Volume of Water Phantom
+  //................................
+
+  G4Box* solidPhantom =
+    new G4Box("phantom", phantomSize.x() / 2., phantomSize.y() / 2., phantomSize.z() / 2.);
+  G4LogicalVolume* logicPhantom = new G4LogicalVolume(solidPhantom, Air, "Phantom", 0, 0, 0);
+
+  G4RotationMatrix* rot = new G4RotationMatrix();
+  // rot->rotateY(30.*deg);
+  PhantomPos_z = 114.755*cm + 0.20055*cm - phantomDist - phantomDim_z/2.0;
+  G4ThreeVector positionPhantom = G4ThreeVector(0, 0, PhantomPos_z);
+  // G4VPhysicalVolume * physiPhantom =
+  new G4PVPlacement(0,  // no rotation
+                    positionPhantom,  // at (x,y,z)
+                    "Phantom",  // its name
+                    logicPhantom,  // its logical volume
+                    experimentalHall_phys,  // its mother  volume
+                    false,  // no boolean operations
+                    0);  // copy number  
+  G4ThreeVector voxelSize;
+  voxelSize.setX(phantomSize.x()/numberOfVoxelsAlongX);
+  voxelSize.setY(phantomSize.y()/numberOfVoxelsAlongY);
+  voxelSize.setZ(phantomSize.z()/numberOfVoxelsAlongZ);
+
+  // Replication of Water Phantom Volume.
+  // Y Slice
+  G4String yRepName("YSlice");
+  G4VSolid* solYRep =
+    new G4Box(yRepName, phantomSize.x() / 2., voxelSize.y() / 2., phantomSize.z() / 2.);
+  G4LogicalVolume* logYRep = new G4LogicalVolume(solYRep, Air, yRepName);
+  // G4PVReplica* yReplica =
+  new G4PVReplica(yRepName, logYRep, logicPhantom, kYAxis, numberOfVoxelsAlongY, voxelSize.y());
+  // X Slice
+  G4String xRepName("XSlice");
+  G4VSolid* solXRep =
+    new G4Box(xRepName, voxelSize.x() / 2., voxelSize.y() / 2., phantomSize.z() / 2.);
+  G4LogicalVolume* logXRep = new G4LogicalVolume(solXRep, Air, xRepName);
+  // G4PVReplica* xReplica =
+  new G4PVReplica(xRepName, logXRep, logYRep, kXAxis, numberOfVoxelsAlongX, voxelSize.x());
+
+  G4String voxelName("phantomVoxel");
+  G4VSolid* solidVoxel = new G4Box(voxelName, voxelSize.x() / 2., voxelSize.y() / 2., voxelSize.z() / 2.);
+  G4LogicalVolume* logicalVolumeVoxel = new G4LogicalVolume(solidVoxel, Air, voxelName);
+  //
+  //
+  std::vector<G4Material*> phantomMat(2, Air);
+  //
+  // Parameterisation for transformation of voxels.
+  //  (voxel size is fixed in this example.
+  //  e.g. nested parameterisation handles material and transfomation of voxels.)
+  MedLinacNestedPhantomParameterisation* paramPhantom =
+    new MedLinacNestedPhantomParameterisation(voxelSize / 2., numberOfVoxelsAlongZ, phantomMat);
+  // G4VPhysicalVolume * physiPhantomSens =
+  new G4PVParameterised("PhantomSens",  // their name
+                        logicalVolumeVoxel,  // their logical volume
+                        logXRep,  // Mother logical volume
+                        kUndefined,  // Are placed along this axis
+                        numberOfVoxelsAlongZ,  // Number of cells
+                        paramPhantom);  // Parameterisation.
+  //   Optimization flag is avaiable for,  
+  //    kUndefined, kXAxis, kYAxis, kZAxis.
+  //
 
 //--------- Visualization attributes -------------------------------
 
@@ -381,7 +444,7 @@ G4VPhysicalVolume* MedLinacDetectorConstruction::ConstructGeom ()
   G4VisAttributes* simpleH2OVisAtt= new G4VisAttributes(lblue);
   simpleH2OVisAtt->SetVisibility(true);
   simpleH2OVisAtt->SetForceSolid(true);
-   Phantom_log->SetVisAttributes(simpleH2OVisAtt);
+   logicPhantom->SetVisAttributes(simpleH2OVisAtt);
 
    G4VisAttributes* simpleVacuumWVisAtt= new G4VisAttributes(white);
    simpleVacuumWVisAtt->SetVisibility(true);
@@ -401,9 +464,17 @@ G4VPhysicalVolume* MedLinacDetectorConstruction::ConstructGeom ()
    simpleWorldVisAtt->SetVisibility(false);
    experimentalHall_log ->SetVisAttributes(simpleWorldVisAtt);
 
+    G4VisAttributes* yRepVisAtt = new G4VisAttributes(G4Colour(0.0, 1.0, 0.0));
+    logYRep->SetVisAttributes(yRepVisAtt);
+    G4VisAttributes* xRepVisAtt = new G4VisAttributes(G4Colour(0.0, 1.0, 0.0));
+    logXRep->SetVisAttributes(xRepVisAtt);
+
+    // Skip the visualization for those voxels.
+    logicalVolumeVoxel->SetVisAttributes(G4VisAttributes::GetInvisible());
+
    //if you want not to see phantom, jaws e vacuum ...:
 
-   //Phantom_log->SetVisAttributes(simpleWorldVisAtt);
+   //logicPhantom->SetVisAttributes(simpleWorldVisAtt);
    //JawY1_log->SetVisAttributes(simpleWorldVisAtt);
    //JawY2_log->SetVisAttributes(simpleWorldVisAtt);
    //JawX1_log->SetVisAttributes(simpleWorldVisAtt);
@@ -412,11 +483,9 @@ G4VPhysicalVolume* MedLinacDetectorConstruction::ConstructGeom ()
 
   //   Sets a max Step length in the detector
    //G4double maxStep = 0.2*mm;
-   Phantom_log->SetUserLimits(new G4UserLimits(maxStep));
+   logicPhantom->SetUserLimits(new G4UserLimits(maxStep));
 
    ConstructVolume();
-
-   ConstructSensitiveDetector();
 
    //G4cout <<"????????????????????numberOfVoxels "<< numberOfVoxels <<G4endl ;
    //G4cout <<"????????????????????numberOfVoxelsAlongX "<< numberOfVoxelsAlongX <<G4endl ;
@@ -475,11 +544,25 @@ void MedLinacDetectorConstruction::SetPhantomDim (G4double val)
   phantomDim = val;
   G4cout <<"==============================phantomDim  "<< phantomDim/mm<<"mm"<<G4endl;
 }
+void MedLinacDetectorConstruction::SetPhantomDist (G4double val)
+{
+  phantomDist = val;
+  G4cout <<"==============================phantomDist  "<< phantomDist/mm<<"mm"<<G4endl;
+}
 
 void MedLinacDetectorConstruction::SetNumberOfVoxels (G4int val)
 {
   numberOfVoxels = val;
   //G4cout <<"==============================numberOfVoxels  "<< numberOfVoxels<<G4endl;
+}
+
+void MedLinacDetectorConstruction::SetMode (G4String mode)
+{
+  if(mode == "electron"){
+    electronMode = true;
+  }else{
+    electronMode= false;
+  }
 }
 
 void MedLinacDetectorConstruction::SetMaxStep (G4double val)
@@ -494,35 +577,26 @@ void MedLinacDetectorConstruction::UpdateGeometry()
   G4RunManager::GetRunManager()->ReinitializeGeometry(true);
 }
 
-
-
 void MedLinacDetectorConstruction::ConstructVolume()
 {
   pHead ->ConstructComponent(experimentalHall_phys,vacuumBlock_phys);
-  decorator ->ConstructComponent( experimentalHall_phys,vacuumBlock_phys);
-  decorator1 ->ConstructComponent( experimentalHall_phys,vacuumBlock_phys);
+  filterDecorator ->ConstructComponent( experimentalHall_phys,vacuumBlock_phys);
+  MLCDecorator ->ConstructComponent( experimentalHall_phys,vacuumBlock_phys);
 
-  }
+}
 
-void  MedLinacDetectorConstruction::ConstructSensitiveDetector()
-// Sensitive Detector and ReadOut geometry definition
-{ 
-
-  G4SDManager* pSDManager = G4SDManager::GetSDMpointer();
-
+void  MedLinacDetectorConstruction::ConstructSDandField()
+{
   if(!phantomSD)
   {
     phantomSD = new MedLinacPhantomSD (sensitiveDetectorName);
-
-    pSDManager->AddNewDetector(phantomSD);
+    G4SDManager::GetSDMpointer()->AddNewDetector(phantomSD);
   }
+  // Attach sensitive detectors by finding the logical volumes by name
+  G4LogicalVolume* lv = 0;
+  //lv = G4LogicalVolumeStore::GetInstance()->GetVolume("ROPhantomYDivisionLog");
+  //if(lv) lv->SetSensitiveDetector(dummySD);
+  lv = G4LogicalVolumeStore::GetInstance()->GetVolume("phantomVoxel");
+  if(lv) lv->SetSensitiveDetector(phantomSD);
 
- G4String ROGeometryName = "PhantomROGeometry";
-    phantomROGeometry = new MedLinacPhantomROGeometry (ROGeometryName, phantomDim_x,phantomDim_y,phantomDim_z,
-						  numberOfVoxelsAlongX,numberOfVoxelsAlongY,numberOfVoxelsAlongZ);
-
-    phantomROGeometry->BuildROGeometry();
-    phantomSD->SetROgeometry(phantomROGeometry);
-
-    Phantom_log->SetSensitiveDetector(phantomSD);
 }
